@@ -120,14 +120,14 @@ function load(i) {
 function play() {
     audio.play();
     if (btnPlay) {
-        btnPlay.textContent = "⏸";
+        btnPlay.classList.add('is-playing');
         btnPlay.setAttribute("aria-label", "Pause");
     }
 }
 function pause() {
     audio.pause();
     if (btnPlay) {
-        btnPlay.textContent = "▶";
+        btnPlay.classList.remove('is-playing');
         btnPlay.setAttribute("aria-label", "Play");
     }
 }
@@ -175,7 +175,8 @@ volume?.addEventListener("input", () => { audio.volume = Number(volume.value); }
 btnMute?.addEventListener("click", () => {
     if (!audio) return;
     audio.muted = !audio.muted;
-    btnMute.textContent = audio.muted ? "🔇" : "🔈";
+    btnMute.classList.toggle('is-muted', audio.muted);
+    btnMute.setAttribute('aria-label', audio.muted ? 'Unmute' : 'Mute');
 });
 btnPlay?.addEventListener("click", togglePlay);
 btnPrev?.addEventListener("click", prev);

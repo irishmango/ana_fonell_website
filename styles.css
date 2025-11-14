@@ -370,7 +370,7 @@ p {
 .player__controls {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     margin: 8px 0;
 }
 
@@ -434,8 +434,56 @@ p {
     display: grid;
     grid-template-columns: auto 1fr;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     margin-top: 10px;
+}
+
+/* Icon masks for controls (always white) */
+.icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    /* icon color */
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    position: relative;
+}
+
+.icon-play {
+    -webkit-mask-image: url('assets/icons/play.svg');
+    mask-image: url('assets/icons/play.svg');
+}
+
+.icon-prev {
+    -webkit-mask-image: url('assets/icons/skip-back.svg');
+    mask-image: url('assets/icons/skip-back.svg');
+}
+
+.icon-next {
+    -webkit-mask-image: url('assets/icons/skip-forward.svg');
+    mask-image: url('assets/icons/skip-forward.svg');
+}
+
+.icon-volume {
+    -webkit-mask-image: url('assets/icons/volume.svg');
+    mask-image: url('assets/icons/volume.svg');
+}
+
+/* Playing state: draw pause bars */
+.btn--play.is-playing .icon-play {
+    -webkit-mask-image: url('assets/icons/pause.svg');
+    mask-image: url('assets/icons/pause.svg');
+}
+
+/* Muted state: draw slash */
+.btn--mute.is-muted .icon-volume {
+    -webkit-mask-image: url('assets/icons/volume-x.svg');
+    mask-image: url('assets/icons/volume-x.svg');
 }
 
 /* Playlist */

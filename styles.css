@@ -196,7 +196,7 @@ p {
     gap: 24px;
     align-items: center;
     justify-content: center;
-    background-image: linear-gradient(var(--hero-overlay), var(--hero-overlay)), url('assets/img/temp_main_upscaled.png');
+    background-image: linear-gradient(var(--hero-overlay), var(--hero-overlay)), url('assets/img/temp_main_upscaled.webp');
     background-size: cover;
     background-position: center 0%;
     background-repeat: no-repeat;

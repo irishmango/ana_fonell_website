@@ -264,7 +264,7 @@ p {
 .drawer__list {
     list-style: none;
     margin: 0;
-    padding: 96px 24px 40px;
+    height: 100%;
     /* top space for breathing room */
     display: flex;
     flex-direction: column;
@@ -332,6 +332,8 @@ p {
     /* center player while keeping heading left */
     background: rgba(0, 0, 0, 0.25);
     --accent: rgb(130, 50, 43);
+    box-sizing: border-box;
+    /* prevent padding/border from causing overflow on narrow screens */
 }
 
 /* Now playing row */
@@ -354,7 +356,8 @@ p {
 
 .player__title {
     font-family: var(--font-heading);
-    font-size: 1.25rem;
+    font-size: 1.35rem;
+    font-weight: 700;
     line-height: 1.2;
 }
 
@@ -458,6 +461,7 @@ p {
     cursor: pointer;
     display: grid;
     grid-template-columns: 1fr auto;
+    grid-auto-rows: auto;
     gap: 12px;
 }
 
@@ -470,6 +474,24 @@ p {
 .playlist .is-active {
     border-color: var(--accent);
     background: rgba(0, 0, 0, 0.35);
+}
+
+/* Playlist line breaks and secondary info */
+.playlist button .main {
+    grid-column: 1 / 2;
+    font-weight: 700;
+    font-size: 1.05rem;
+}
+
+.playlist button .dur {
+    grid-column: 2 / 3;
+    justify-self: end;
+}
+
+.playlist button .sub {
+    grid-column: 1 / -1;
+    font-size: 0.9rem;
+    opacity: 0.9;
 }
 
 .bio {
@@ -697,6 +719,106 @@ p {
     line-height: 1.2;
     color: rgba(255, 130, 130, 0.95);
     font-family: var(--font-body);
+}
+
+/* Alt email line below form */
+.contact-alt-email {
+    width: min(900px, 100%);
+    margin: 24px auto 0;
+    color: #fff;
+    opacity: 0.95;
+}
+
+.contact-alt-email a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.contact-alt-email a:hover,
+.contact-alt-email a:focus {
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+/* Privacy notice under form */
+.form-notice {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.form-notice a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.form-notice a:hover,
+.form-notice a:focus {
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+/* Consent row with checkbox */
+.form-consent {
+    margin-top: 8px;
+    display: inline-flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 0.95rem;
+    line-height: 1.3;
+    color: #fff;
+}
+
+.form-consent input[type="checkbox"] {
+    margin-top: 2px;
+}
+
+.form-consent a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.form-consent a:hover,
+.form-consent a:focus {
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+/* Privacy section */
+.privacy {
+    background-color: rgb(75, 32, 29);
+    color: #fff;
+    padding: 80px 64px 64px;
+    box-sizing: border-box;
+    height: 80vh;
+}
+
+
+.privacy-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.privacy h1 {
+    width: min(900px, 100%);
+    margin: 0 0 24px 0;
+    font-size: clamp(2.2rem, 3.5vw + 0.4rem, 3rem);
+    line-height: 1.1;
+    color: #fff;
+}
+
+.privacy-content {
+    width: min(900px, 100%);
+}
+
+.privacy-content h2 {
+    margin-top: 20px;
+    font-size: 1.3rem;
+}
+
+.privacy-content p {
+    margin: 0 0 12px 0;
 }
 
 /* Popup (custom alert replacement) */

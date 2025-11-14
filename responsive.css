@@ -49,7 +49,7 @@
     }
 
     .player__title {
-        font-size: 1.15rem;
+        font-size: 1.2rem;
     }
 
     .player__controls {
@@ -84,6 +84,8 @@
     /* Player */
     .player {
         padding: 14px 14px 16px;
+        width: 100%;
+        max-width: 100%;
     }
 
     .player__now {
@@ -142,6 +144,20 @@
     .footer-inner {
         grid-template-columns: 1fr;
         text-align: center;
+    }
+
+    /* Allow footer nav links to wrap to new lines on small screens */
+    .footer-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px 14px;
+        /* row gap | column gap */
+        width: 100%;
+    }
+
+    .footer-nav a {
+        flex: 0 0 auto;
+        /* prevent stretching and allow clean wrapping */
     }
 
     .footer-social {

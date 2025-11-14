@@ -2,14 +2,78 @@
 // Update track src and cover paths to your actual assets
 
 const tracks = [
-    { title: "Vamos Nina", artist: "Ana Fonell", src: "assets/audio/vamos_nina.mp3", cover: "assets/img/ana_shoes.jpg", duration: null },
-    { title: "Nostalgias", artist: "Ana Fonell", src: "assets/audio/nostalgias_live.mp3", cover: "assets/img/ana_shoes.jpg", duration: null },
-    { title: "Negra Maria", artist: "Ana Fonell", src: "assets/audio/negra_maria.mp3", cover: "assets/img/ana_shoes.jpg", duration: null },
-    { title: "Los Mareados", artist: "Ana Fonell", src: "assets/audio/los_mareados.mp3", cover: "assets/img/ana_shoes.jpg", duration: null },
-    { title: "El Choclo", artist: "Ana Fonell", src: "assets/audio/el_choclo.mp3", cover: "assets/img/ana_shoes.jpg", duration: null },
-    { title: "Chiquilín de Bachín", artist: "Ana Fonell", src: "assets/audio/chiquilín_de_bachin.mp3", cover: "assets/img/ana_shoes.jpg", duration: null },
-    { title: "Che Bandoneón", artist: "Ana Fonell", src: "assets/audio/che_bandoneon_live.mp3", cover: "assets/img/ana_shoes.jpg", duration: null },
-    { title: "Caserón de Tejas", artist: "Ana Fonell", src: "assets/audio/caseron_de_tejas.mp3", cover: "assets/img/ana_shoes.jpg", duration: null }
+    {
+        title: "Vamos Nina",
+        artist: "Ana Fonell",
+        details: "mit Corinna Söller (Klavier) und Katja Kulesza (Violine) • 2002",
+        year: 2002,
+        src: "assets/audio/vamos_nina.mp3",
+        cover: "assets/img/ana_shoes.jpg",
+        duration: null
+    },
+    {
+        title: "Nostalgias",
+        artist: "Ana Fonell",
+        details: "mit Quique Sinesi (Gitarre) • 2004",
+        year: 2004,
+        src: "assets/audio/nostalgias_live.mp3",
+        cover: "assets/img/ana_shoes.jpg",
+        duration: null
+    },
+    {
+        title: "Negra Maria",
+        artist: "Ana Fonell",
+        details: "mit Pablo Woizinski (Piano) und César Nigro (Gitarre) • 2006",
+        year: 2006,
+        src: "assets/audio/negra_maria.mp3",
+        cover: "assets/img/ana_shoes.jpg",
+        duration: null
+    },
+    {
+        title: "Los Mareados",
+        artist: "Ana Fonell",
+        details: "mit Quique Sinesi (Gitarre) • 2025",
+        year: 2025,
+        src: "assets/audio/los_mareados.mp3",
+        cover: "assets/img/ana_shoes.jpg",
+        duration: null
+    },
+    {
+        title: "El Choclo",
+        artist: "Ana Fonell",
+        details: "mit Coco Nelegatti (Gitarre) • 1998",
+        year: 1998,
+        src: "assets/audio/el_choclo.mp3",
+        cover: "assets/img/ana_shoes.jpg",
+        duration: null
+    },
+    {
+        title: "Chiquilín de Bachín",
+        artist: "Ana Fonell",
+        details: "mit Gustavo Battistessa (Bandoneon) und Marcelo Iglesias (Piano) • 1998",
+        year: 1998,
+        src: "assets/audio/chiquilín_de_bachin.mp3",
+        cover: "assets/img/ana_shoes.jpg",
+        duration: null
+    },
+    {
+        title: "Che Bandoneón",
+        artist: "Ana Fonell",
+        details: "mit Fernando Maguna (Piano) und Diego Trosman (Gitarre) • 2002",
+        year: 2002,
+        src: "assets/audio/che_bandoneon_live.mp3",
+        cover: "assets/img/ana_shoes.jpg",
+        duration: null
+    },
+    {
+        title: "Caserón de Tejas",
+        artist: "Ana Fonell",
+        details: "mit Quique Sinesi (Gitarre) • 2025",
+        year: 2025,
+        src: "assets/audio/caseron_de_tejas.mp3",
+        cover: "assets/img/ana_shoes.jpg",
+        duration: null
+    }
 ];
 
 const audio = document.getElementById("audio");
@@ -46,7 +110,7 @@ function load(i) {
     const t = tracks[index];
     audio.src = t.src;
     if (titleEl) titleEl.textContent = t.title;
-    if (artistEl) artistEl.textContent = t.artist || "";
+    if (artistEl) artistEl.textContent = t.details || t.artist || "";
     if (coverEl) coverEl.src = t.cover || "assets/img/ana_shoes.jpg";
     [...playlistEl.querySelectorAll("button")].forEach((b, bi) =>
         b.classList.toggle("is-active", bi === index)
@@ -77,7 +141,11 @@ function buildPlaylist() {
         const li = document.createElement("li");
         const btn = document.createElement("button");
         btn.type = "button";
-        btn.innerHTML = `<span>${t.title}${t.artist ? " — " + t.artist : ""}</span><span class="dur">${t.duration ? fmt(t.duration) : ""}</span>`;
+        btn.innerHTML = `
+            <span class="main">${t.title}</span>
+            <span class="dur">${t.duration ? fmt(t.duration) : ""}</span>
+            <small class="sub">${t.details ? t.details : ""}</small>
+        `;
         btn.addEventListener("click", () => { load(i); play(); });
         li.appendChild(btn);
         playlistEl.appendChild(li);
@@ -85,31 +153,34 @@ function buildPlaylist() {
 }
 
 // Events
-audio.addEventListener("loadedmetadata", () => {
-    if (timeTotal) timeTotal.textContent = fmt(audio.duration);
-    if (seek) seek.max = audio.duration || 100;
-});
-audio.addEventListener("timeupdate", () => {
-    if (!isSeeking && seek) seek.value = audio.currentTime || 0;
-    if (timeCurrent) timeCurrent.textContent = fmt(audio.currentTime);
-    if (!tracks[index].duration && isFinite(audio.duration)) {
-        tracks[index].duration = audio.duration;
-        const durSpan = playlistEl.querySelectorAll(".dur")[index];
-        if (durSpan) durSpan.textContent = fmt(audio.duration);
-    }
-});
+if (audio) {
+    audio.addEventListener("loadedmetadata", () => {
+        if (timeTotal) timeTotal.textContent = fmt(audio.duration);
+        if (seek) seek.max = audio.duration || 100;
+    });
+    audio.addEventListener("timeupdate", () => {
+        if (!isSeeking && seek) seek.value = audio.currentTime || 0;
+        if (timeCurrent) timeCurrent.textContent = fmt(audio.currentTime);
+        if (!tracks[index].duration && isFinite(audio.duration)) {
+            tracks[index].duration = audio.duration;
+            const durSpan = playlistEl?.querySelectorAll(".dur")[index];
+            if (durSpan) durSpan.textContent = fmt(audio.duration);
+        }
+    });
+}
 
 seek?.addEventListener("input", () => { isSeeking = true; });
 seek?.addEventListener("change", () => { audio.currentTime = Number(seek.value); isSeeking = false; });
 volume?.addEventListener("input", () => { audio.volume = Number(volume.value); });
 btnMute?.addEventListener("click", () => {
+    if (!audio) return;
     audio.muted = !audio.muted;
     btnMute.textContent = audio.muted ? "🔇" : "🔈";
 });
 btnPlay?.addEventListener("click", togglePlay);
 btnPrev?.addEventListener("click", prev);
 btnNext?.addEventListener("click", next);
-audio.addEventListener("ended", next);
+audio?.addEventListener("ended", next);
 
 player?.addEventListener("keydown", (e) => {
     if (e.target.matches("input")) return; // don't hijack slider interactions
@@ -255,7 +326,16 @@ const I18N = (() => {
         }
     };
 
-    return { setLang, getInitialLang };
+    const t = (key, fallback = '') => {
+        try {
+            const dict = cache[current] || {};
+            const val = dict[key];
+            if (typeof val === 'string' && val.length) return val;
+        } catch { }
+        return fallback || key;
+    };
+
+    return { setLang, getInitialLang, t };
 })();
 
 // Dynamic nav highlighting based on scroll position
@@ -355,6 +435,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const initialLang = I18N.getInitialLang();
     I18N.setLang(initialLang, { updateUrl: !new URLSearchParams(window.location.search).has('lang') });
 
+    // Set footer year (available across pages)
+    const yearEl = document.getElementById('year');
+    if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
     const form = document.getElementById("contactForm");
     const popup = document.getElementById('popup');
     const popupTitle = document.getElementById('popup-title');
@@ -363,7 +447,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const popupCloseEls = document.querySelectorAll('[data-close]');
     let lastFocused = null;
 
-    function openPopup({ title = 'Message', message = '', variant = 'success' } = {}) {
+    function openPopup({ title = I18N.t('popup.generic.title', 'Message'), message = '', variant = 'success' } = {}) {
         if (!popup) return;
         lastFocused = document.activeElement;
         popupTitle.textContent = title;
@@ -397,22 +481,27 @@ document.addEventListener("DOMContentLoaded", () => {
         if (e.target.classList.contains('popup__backdrop')) closePopup();
     });
 
-    form.addEventListener("submit", async (e) => {
+    if (form) form.addEventListener("submit", async (e) => {
         e.preventDefault();
         clearErrors();
         const nameInput = form.querySelector('#name');
         const emailInput = form.querySelector('#email');
         const messageInput = form.querySelector('#message');
+        const consentInput = form.querySelector('#consent');
 
         const errors = [];
         if (!nameInput.value.trim()) {
-            errors.push({ el: nameInput, msg: 'Name is required.' });
+            errors.push({ el: nameInput, msg: I18N.t('form.error.nameRequired', 'Name is required.') });
         }
         if (!validateEmail(emailInput.value)) {
-            errors.push({ el: emailInput, msg: 'Please enter a valid email address.' });
+            errors.push({ el: emailInput, msg: I18N.t('form.error.emailInvalid', 'Please enter a valid email address.') });
         }
         if (!messageInput.value.trim()) {
-            errors.push({ el: messageInput, msg: 'Message cannot be empty.' });
+            errors.push({ el: messageInput, msg: I18N.t('form.error.messageRequired', 'Message cannot be empty.') });
+        }
+
+        if (consentInput && !consentInput.checked) {
+            errors.push({ el: consentInput, msg: I18N.t('form.error.consentRequired', 'Please check this box to allow us to use your information to respond.') });
         }
 
         if (errors.length) {
@@ -429,21 +518,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 headers: { "Accept": "application/json" }
             });
         } catch (err) {
-            openPopup({ title: 'Network error', message: 'Could not submit. Check connection and try again.', variant: 'error' });
+            openPopup({ title: I18N.t('popup.networkError.title', 'Network error'), message: I18N.t('popup.networkError.message', 'Could not submit. Check connection and try again.'), variant: 'error' });
             return;
         }
 
         if (res.ok) {
-            openPopup({ title: 'Thank you', message: 'Message sent successfully!', variant: 'success' });
+            openPopup({ title: I18N.t('popup.success.title', 'Thank you'), message: I18N.t('popup.success.message', 'Message sent successfully!'), variant: 'success' });
             form.reset();
         } else {
-            openPopup({ title: 'Sorry', message: 'Something went wrong. Please try again.', variant: 'error' });
+            openPopup({ title: I18N.t('popup.error.title', 'Sorry'), message: I18N.t('popup.error.message', 'Something went wrong. Please try again.'), variant: 'error' });
         }
     });
-
-    // Set footer year
-    const yearEl = document.getElementById('year');
-    if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
     // Validation helpers
     function validateEmail(v) {
@@ -463,6 +548,7 @@ document.addEventListener("DOMContentLoaded", () => {
         msgEl.textContent = message;
     }
     function clearErrors() {
+        if (!form) return;
         form.querySelectorAll('.is-invalid').forEach(el => {
             el.classList.remove('is-invalid');
             el.removeAttribute('aria-invalid');
@@ -471,20 +557,23 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Real-time clearing
-    form.querySelectorAll('input, textarea').forEach(el => {
-        el.addEventListener('input', () => {
-            if (el.classList.contains('is-invalid')) {
-                // Re-validate just this field
-                let valid = true;
-                if (el.id === 'email') valid = validateEmail(el.value);
-                else valid = !!el.value.trim();
-                if (valid) {
-                    el.classList.remove('is-invalid');
-                    el.removeAttribute('aria-invalid');
-                    const msgEl = el.parentElement.querySelector('.error-msg');
-                    if (msgEl) msgEl.textContent = '';
+    if (form) {
+        form.querySelectorAll('input, textarea').forEach(el => {
+            el.addEventListener('input', () => {
+                if (el.classList.contains('is-invalid')) {
+                    // Re-validate just this field
+                    let valid = true;
+                    if (el.type === 'checkbox') valid = el.checked;
+                    else if (el.id === 'email') valid = validateEmail(el.value);
+                    else valid = !!el.value.trim();
+                    if (valid) {
+                        el.classList.remove('is-invalid');
+                        el.removeAttribute('aria-invalid');
+                        const msgEl = el.parentElement.querySelector('.error-msg');
+                        if (msgEl) msgEl.textContent = '';
+                    }
                 }
-            }
+            });
         });
-    });
+    }
 });

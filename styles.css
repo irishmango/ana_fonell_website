@@ -574,26 +574,7 @@ p {
     }
 }
 
-/* =============================
-   DEBUG OUTLINES
-   Remove or comment out when not needed.
-   Add the class 'debug' to <body> to enable a more subtle version.
-============================== */
-/* Always-on global outline for immediate layout debugging */
-* {
-    outline: 1px solid rgba(0, 160, 255, 0.35);
-    outline-offset: -1px;
-    /* keep outlines tight */
-}
 
-/* Optional: Activate multi-layer subtle outlines only when body has .debug */
-body.debug * {
-    outline: 1px solid rgba(255, 0, 128, 0.35);
-}
-
-body.debug *:hover {
-    outline-color: rgba(255, 255, 0, 0.7);
-}
 
 /* Contact Section */
 .contact {
@@ -891,3 +872,23 @@ body.debug *:hover {
 html {
     scroll-behavior: smooth;
 }
+
+
+/* =============================
+   DEBUG OUTLINES
+   Remove or comment out when not needed.
+   Add the class 'debug' to <body> to enable a more subtle version.
+============================== */
+/* Always-on global outline for immediate layout debugging */
+/* * {
+    outline: 1px solid rgba(0, 160, 255, 0.35);
+    outline-offset: -1px;
+}
+
+body.debug * {
+    outline: 1px solid rgba(255, 0, 128, 0.35);
+}
+
+body.debug *:hover {
+    outline-color: rgba(255, 255, 0, 0.7);
+} */

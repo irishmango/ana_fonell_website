@@ -50,12 +50,6 @@
 
     .player__title {
         font-size: 1.2rem;
-
-        /* Neutralize hover color on mobile */
-        .menu-button:hover {
-            color: #fff;
-            /* keep default color on touch */
-        }
     }
 
     .player__controls {
@@ -74,21 +68,6 @@
 /* ========== Phones ========== */
 @media (max-width: 700px) {
 
-    .nav_link:hover,
-    .lang-switch_link:hover,
-    .lang-menu a:hover,
-    .drawer__link:hover,
-    .btn:hover,
-    .playlist button:hover,
-    .contact-alt-email a:hover,
-    .form-notice a:hover,
-    .form-consent a:hover,
-    .footer-nav a:hover,
-    .footer-social a:hover,
-    .back-to-top:hover,
-    .popup__close:hover {
-        display: none;
-    }
 
     /* Header */
     .menu-button {
@@ -200,24 +179,6 @@
 
 /* ========== Small phones ========== */
 @media (max-width: 480px) {
-
-    .nav_link:hover,
-    .lang-switch_link:hover,
-    .lang-menu a:hover,
-    .drawer__link:hover,
-    .btn:hover,
-    .menu-button:hover,
-    .playlist button:hover,
-    .contact-alt-email a:hover,
-    .form-notice a:hover,
-    .form-consent a:hover,
-    .footer-nav a:hover,
-    .footer-social a:hover,
-    .back-to-top:hover,
-    .popup__close:hover {
-        display: none;
-    }
-
     .nav_link {
         font-size: 1rem;
     }

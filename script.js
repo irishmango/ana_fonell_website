@@ -315,8 +315,7 @@ const I18N = (() => {
             document.documentElement.setAttribute('lang', lang);
             localStorage.setItem('lang', lang);
             current = lang;
-            const btn = document.querySelector('.lang-toggle');
-            if (btn) btn.textContent = lang.toUpperCase();
+            document.querySelectorAll('.lang-toggle').forEach(b => b.textContent = lang.toUpperCase());
             if (updateUrl) {
                 const url = new URL(window.location.href);
                 url.searchParams.set('lang', lang);
@@ -376,58 +375,89 @@ const I18N = (() => {
 
 // Language dropdown toggle
 (function () {
-    const container = document.querySelector('.lang-switch');
-    if (!container) return;
-    const btn = container.querySelector('.lang-toggle');
-    const menu = container.querySelector('#langMenu');
-    if (!btn || !menu) return;
+    const containers = document.querySelectorAll('.lang-switch');
+    if (!containers.length) return;
 
-    // Initialize label from detected language
+    containers.forEach(container => {
+        const btn = container.querySelector('.lang-toggle');
+        const menu = container.querySelector('.lang-menu');
+        if (!btn || !menu) return;
+
+        // Initialize label from detected language
+        try {
+            const initial = I18N.getInitialLang();
+            if (initial) btn.textContent = initial.toUpperCase();
+        } catch { }
+
+        const open = () => {
+            btn.setAttribute('aria-expanded', 'true');
+            menu.hidden = false;
+            container.classList.add('is-open');
+        };
+        const close = () => {
+            btn.setAttribute('aria-expanded', 'false');
+            menu.hidden = true;
+            container.classList.remove('is-open');
+        };
+
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const isOpen = btn.getAttribute('aria-expanded') === 'true';
+            isOpen ? close() : open();
+        });
+
+        // Handle selection: prevent navigation, switch language via i18n
+        menu.addEventListener('click', (e) => {
+            const a = e.target.closest('a[role="menuitem"]');
+            if (!a) return;
+            e.preventDefault();
+            const langAttr = a.getAttribute('lang');
+            const hrefLang = (() => { try { return new URL(a.href).searchParams.get('lang'); } catch { return null; } })();
+            const lang = (langAttr || hrefLang || (a.textContent || '').trim()).toLowerCase();
+            if (lang) {
+                I18N.setLang(lang);
+                // All buttons are updated by setLang; no need to set here
+            }
+            close();
+        });
+
+        // Close on outside click
+        document.addEventListener('click', (e) => {
+            if (!container.contains(e.target)) close();
+        });
+
+        // Close on ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') close();
+        });
+    });
+})();
+
+// Drawer language inline links (DE/EN/ES)
+(function () {
+    const container = document.querySelector('.drawer__langs');
+    if (!container) return;
+
+    const setActive = (lang) => {
+        container.querySelectorAll('[data-lang]').forEach(a => a.removeAttribute('aria-current'));
+        const el = container.querySelector(`[data-lang="${lang}"]`);
+        if (el) el.setAttribute('aria-current', 'page');
+    };
+
+    // Initialize current language highlight
     try {
         const initial = I18N.getInitialLang();
-        if (initial) btn.textContent = initial.toUpperCase();
+        if (initial) setActive(initial);
     } catch { }
 
-    const open = () => {
-        btn.setAttribute('aria-expanded', 'true');
-        menu.hidden = false;
-        container.classList.add('is-open');
-    };
-    const close = () => {
-        btn.setAttribute('aria-expanded', 'false');
-        menu.hidden = true;
-        container.classList.remove('is-open');
-    };
-
-    btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const isOpen = btn.getAttribute('aria-expanded') === 'true';
-        isOpen ? close() : open();
-    });
-
-    // Handle selection: prevent navigation, switch language via i18n
-    menu.addEventListener('click', (e) => {
-        const a = e.target.closest('a[role="menuitem"]');
+    container.addEventListener('click', (e) => {
+        const a = e.target.closest('[data-lang]');
         if (!a) return;
         e.preventDefault();
-        const langAttr = a.getAttribute('lang');
-        const hrefLang = (() => { try { return new URL(a.href).searchParams.get('lang'); } catch { return null; } })();
-        const lang = (langAttr || hrefLang || (a.textContent || '').trim()).toLowerCase();
-        if (lang) {
-            I18N.setLang(lang);
-            btn.textContent = lang.toUpperCase();
-        }
-        close();
-    });
-
-    // Close on outside click
-    document.addEventListener('click', (e) => {
-        if (!container.contains(e.target)) close();
-    });
-
-    // Close on ESC
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') close();
+        const lang = (a.dataset.lang || a.getAttribute('lang') || a.textContent || '').toLowerCase();
+        if (!lang) return;
+        I18N.setLang(lang);
+        setActive(lang);
     });
 })();
 

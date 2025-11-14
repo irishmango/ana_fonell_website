@@ -349,6 +349,7 @@ p {
     object-fit: cover;
     border-radius: 6px;
     background: rgba(255, 255, 255, 0.08);
+    object-position: 80% 0%;
 }
 
 .player__title {
@@ -508,13 +509,23 @@ p {
     margin-inline: auto;
 }
 
-.bio-content img {
+/* Bio media enforces a consistent aspect ratio while keeping image cover-cropped */
+.bio-media {
     flex: 0 1 clamp(220px, 32vw, 420px);
     min-width: 0;
-    max-width: 100%;
-    height: auto;
+    aspect-ratio: 3 / 4;
+    /* portrait box ratio */
     border-radius: 8px;
+    overflow: hidden;
+    /* clip image corners and overflow */
+}
+
+.bio-media img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+    display: block;
+    object-position: 100% 80%;
 }
 
 .bio-text {
@@ -541,7 +552,7 @@ p {
         width: 100%;
     }
 
-    .bio-content img {
+    .bio-media {
         flex-basis: auto;
         width: 100%;
     }

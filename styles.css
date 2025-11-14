@@ -1070,6 +1070,70 @@ html {
     scroll-behavior: smooth;
 }
 
+/* Disable hover effects on touch devices */
+@media (hover: none) {
+    .nav_link:hover {
+        color: #f2f2f2;
+    }
+
+    .lang-switch_link:hover {
+        background: transparent;
+        color: #fff;
+        border-color: rgba(255, 255, 255, 0.35);
+    }
+
+    .lang-menu a:hover {
+        background: transparent;
+        color: #fff;
+    }
+
+    .drawer__link:hover {
+        color: #ffffff;
+    }
+
+    .btn:hover {
+        border-color: rgba(255, 255, 255, 0.3);
+        color: #fff;
+        background: transparent;
+    }
+
+    .playlist button:hover {
+        border-color: rgba(255, 255, 255, 0.15);
+        background: rgba(0, 0, 0, 0.15);
+    }
+
+    .contact-alt-email a:hover {
+        text-decoration: underline;
+        border-bottom: none;
+    }
+
+    .form-notice a:hover {
+        text-decoration: underline;
+        border-bottom: none;
+    }
+
+    .form-consent a:hover {
+        text-decoration: underline;
+        border-bottom: none;
+    }
+
+    .footer-nav a:hover,
+    .footer-social a:hover {
+        color: #fff;
+        border-color: transparent;
+        background: transparent;
+    }
+
+    .back-to-top:hover {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .popup__close:hover {
+        border-color: rgba(255, 255, 255, 0.25);
+    }
+}
+
 
 /* =============================
    DEBUG OUTLINES

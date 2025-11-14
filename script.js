@@ -47,7 +47,7 @@ function load(i) {
     audio.src = t.src;
     if (titleEl) titleEl.textContent = t.title;
     if (artistEl) artistEl.textContent = t.artist || "";
-    if (coverEl) coverEl.src = t.cover || "assets/img/cover-placeholder.jpg";
+    if (coverEl) coverEl.src = t.cover || "assets/img/ana_shoes.jpg";
     [...playlistEl.querySelectorAll("button")].forEach((b, bi) =>
         b.classList.toggle("is-active", bi === index)
     );
@@ -173,6 +173,91 @@ if (player && audio && playlistEl) {
     });
 })();
 
+// Simple i18n utility to load/apply translations
+const I18N = (() => {
+    const cache = Object.create(null);
+    let current = null;
+
+    const getLangFromUrl = () => {
+        try {
+            return new URLSearchParams(window.location.search).get('lang');
+        } catch { return null; }
+    };
+
+    const getInitialLang = () => {
+        const urlLang = getLangFromUrl();
+        if (urlLang) return urlLang.toLowerCase();
+        const saved = localStorage.getItem('lang');
+        if (saved) return saved.toLowerCase();
+        const htmlLang = (document.documentElement.getAttribute('lang') || 'en').slice(0, 2);
+        return htmlLang.toLowerCase();
+    };
+
+    const load = async (lang) => {
+        if (cache[lang]) return cache[lang];
+        const candidates = [];
+        try {
+            const script = document.currentScript || document.querySelector('script[src*="script.js"]') || document.scripts[document.scripts.length - 1];
+            const base = new URL(script?.src || window.location.href, window.location.href);
+            const baseDir = new URL('.', base);
+            candidates.push(new URL(`lang/${lang}.json`, baseDir).href);
+        } catch { }
+        candidates.push(`/lang/${lang}.json`);
+        candidates.push(`lang/${lang}.json`);
+
+        let lastErr = null;
+        for (const url of candidates) {
+            try {
+                const resp = await fetch(url, { cache: 'no-cache' });
+                if (resp.ok) {
+                    const json = await resp.json();
+                    cache[lang] = json;
+                    return json;
+                }
+            } catch (e) { lastErr = e; }
+        }
+        throw lastErr || new Error(`Failed to load translations for ${lang}`);
+    };
+
+    const apply = (dict) => {
+        // Text nodes
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (!key) return;
+            const val = dict[key];
+            if (typeof val === 'string') el.textContent = val;
+        });
+        // Placeholders
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+            const key = el.getAttribute('data-i18n-placeholder');
+            if (!key) return;
+            const val = dict[key];
+            if (typeof val === 'string') el.setAttribute('placeholder', val);
+        });
+    };
+
+    const setLang = async (lang, { updateUrl = true } = {}) => {
+        try {
+            const dict = await load(lang);
+            apply(dict);
+            document.documentElement.setAttribute('lang', lang);
+            localStorage.setItem('lang', lang);
+            current = lang;
+            const btn = document.querySelector('.lang-toggle');
+            if (btn) btn.textContent = lang.toUpperCase();
+            if (updateUrl) {
+                const url = new URL(window.location.href);
+                url.searchParams.set('lang', lang);
+                history.replaceState({}, '', url);
+            }
+        } catch (e) {
+            console.error(e);
+        }
+    };
+
+    return { setLang, getInitialLang };
+})();
+
 // Dynamic nav highlighting based on scroll position
 (function () {
     const sections = document.querySelectorAll('section[id]');
@@ -192,8 +277,6 @@ if (player && audio && playlistEl) {
         clear();
         link.setAttribute('aria-current', 'page');
     };
-
-    // IntersectionObserver removed by request; using scroll-based activation only
 
     // Initial highlight
     setActive(sections[0].id);
@@ -218,11 +301,10 @@ if (player && audio && playlistEl) {
     const menu = container.querySelector('#langMenu');
     if (!btn || !menu) return;
 
-    // Initialize label from URL param (persist selection across page loads)
+    // Initialize label from detected language
     try {
-        const params = new URLSearchParams(window.location.search);
-        const langParam = params.get('lang');
-        if (langParam) btn.textContent = langParam.toUpperCase();
+        const initial = I18N.getInitialLang();
+        if (initial) btn.textContent = initial.toUpperCase();
     } catch { }
 
     const open = () => {
@@ -242,14 +324,19 @@ if (player && audio && playlistEl) {
         isOpen ? close() : open();
     });
 
-    // Update label on selection (in case navigation is intercepted or during SPA)
+    // Handle selection: prevent navigation, switch language via i18n
     menu.addEventListener('click', (e) => {
         const a = e.target.closest('a[role="menuitem"]');
         if (!a) return;
-        const text = (a.textContent || '').trim().toUpperCase();
-        if (text) btn.textContent = text;
+        e.preventDefault();
+        const langAttr = a.getAttribute('lang');
+        const hrefLang = (() => { try { return new URL(a.href).searchParams.get('lang'); } catch { return null; } })();
+        const lang = (langAttr || hrefLang || (a.textContent || '').trim()).toLowerCase();
+        if (lang) {
+            I18N.setLang(lang);
+            btn.textContent = lang.toUpperCase();
+        }
         close();
-        // allow navigation to proceed normally
     });
 
     // Close on outside click
@@ -263,3 +350,141 @@ if (player && audio && playlistEl) {
     });
 })();
 
+document.addEventListener("DOMContentLoaded", () => {
+    // Apply initial language on load
+    const initialLang = I18N.getInitialLang();
+    I18N.setLang(initialLang, { updateUrl: !new URLSearchParams(window.location.search).has('lang') });
+
+    const form = document.getElementById("contactForm");
+    const popup = document.getElementById('popup');
+    const popupTitle = document.getElementById('popup-title');
+    const popupDesc = document.getElementById('popup-desc');
+    const popupOk = document.querySelector('.popup__ok');
+    const popupCloseEls = document.querySelectorAll('[data-close]');
+    let lastFocused = null;
+
+    function openPopup({ title = 'Message', message = '', variant = 'success' } = {}) {
+        if (!popup) return;
+        lastFocused = document.activeElement;
+        popupTitle.textContent = title;
+        popupDesc.textContent = message;
+        popup.classList.remove('popup--success', 'popup--error');
+        popup.classList.add(variant === 'error' ? 'popup--error' : 'popup--success');
+        popup.hidden = false;
+        // Optional: trap focus minimal—move focus to OK
+        popupOk?.focus();
+        document.documentElement.style.overflow = 'hidden';
+    }
+
+    function closePopup() {
+        if (!popup) return;
+        popup.hidden = true;
+        document.documentElement.style.overflow = '';
+        if (lastFocused && typeof lastFocused.focus === 'function') {
+            lastFocused.focus();
+        }
+    }
+
+    // Close interactions
+    popupCloseEls.forEach(el => el.addEventListener('click', closePopup));
+    document.addEventListener('keydown', (e) => {
+        const isOpen = popup && !popup.hidden;
+        if (!isOpen) return;
+        if (e.key === 'Escape') closePopup();
+    });
+    // Click outside panel via backdrop
+    popup?.addEventListener('click', (e) => {
+        if (e.target.classList.contains('popup__backdrop')) closePopup();
+    });
+
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        clearErrors();
+        const nameInput = form.querySelector('#name');
+        const emailInput = form.querySelector('#email');
+        const messageInput = form.querySelector('#message');
+
+        const errors = [];
+        if (!nameInput.value.trim()) {
+            errors.push({ el: nameInput, msg: 'Name is required.' });
+        }
+        if (!validateEmail(emailInput.value)) {
+            errors.push({ el: emailInput, msg: 'Please enter a valid email address.' });
+        }
+        if (!messageInput.value.trim()) {
+            errors.push({ el: messageInput, msg: 'Message cannot be empty.' });
+        }
+
+        if (errors.length) {
+            errors.forEach(({ el, msg }) => showError(el, msg));
+            return;
+        }
+
+        const formData = new FormData(form);
+        let res;
+        try {
+            res = await fetch(form.action, {
+                method: "POST",
+                body: formData,
+                headers: { "Accept": "application/json" }
+            });
+        } catch (err) {
+            openPopup({ title: 'Network error', message: 'Could not submit. Check connection and try again.', variant: 'error' });
+            return;
+        }
+
+        if (res.ok) {
+            openPopup({ title: 'Thank you', message: 'Message sent successfully!', variant: 'success' });
+            form.reset();
+        } else {
+            openPopup({ title: 'Sorry', message: 'Something went wrong. Please try again.', variant: 'error' });
+        }
+    });
+
+    // Set footer year
+    const yearEl = document.getElementById('year');
+    if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+    // Validation helpers
+    function validateEmail(v) {
+        const value = v.trim();
+        if (!value) return false;
+        return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value);
+    }
+    function showError(input, message) {
+        input.classList.add('is-invalid');
+        input.setAttribute('aria-invalid', 'true');
+        let msgEl = input.parentElement.querySelector('.error-msg');
+        if (!msgEl) {
+            msgEl = document.createElement('p');
+            msgEl.className = 'error-msg';
+            input.parentElement.appendChild(msgEl);
+        }
+        msgEl.textContent = message;
+    }
+    function clearErrors() {
+        form.querySelectorAll('.is-invalid').forEach(el => {
+            el.classList.remove('is-invalid');
+            el.removeAttribute('aria-invalid');
+        });
+        form.querySelectorAll('.error-msg').forEach(el => el.textContent = '');
+    }
+
+    // Real-time clearing
+    form.querySelectorAll('input, textarea').forEach(el => {
+        el.addEventListener('input', () => {
+            if (el.classList.contains('is-invalid')) {
+                // Re-validate just this field
+                let valid = true;
+                if (el.id === 'email') valid = validateEmail(el.value);
+                else valid = !!el.value.trim();
+                if (valid) {
+                    el.classList.remove('is-invalid');
+                    el.removeAttribute('aria-invalid');
+                    const msgEl = el.parentElement.querySelector('.error-msg');
+                    if (msgEl) msgEl.textContent = '';
+                }
+            }
+        });
+    });
+});

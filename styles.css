@@ -2,6 +2,8 @@
     --font-heading: 'Marcellus', serif;
     --font-body: 'PT Serif', serif;
     --hero-overlay: rgba(0, 0, 0, 0.45);
+    --form-focus-border: rgba(255, 255, 255, 0.85);
+    --form-focus-ring: rgba(255, 255, 255, 0.35);
 }
 
 body {
@@ -479,10 +481,16 @@ p {
     box-sizing: border-box;
 }
 
+.bio-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .bio h1 {
     margin-top: 0;
     /* Align heading with bio content container */
-    width: min(1100px, 100%);
+    width: min(900px, 100%);
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 24px;
@@ -494,26 +502,23 @@ p {
 .bio-content {
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    justify-content: center;
     gap: 24px;
-    width: min(1100px, 100%);
+    width: min(900px, 100%);
     margin-inline: auto;
 }
 
 .bio-content img {
-    /* fluid width: min/max guardrails so it scales nicely */
     flex: 0 1 clamp(220px, 32vw, 420px);
-    /* allow shrinking below intrinsic width in flex layouts */
     min-width: 0;
     max-width: 100%;
     height: auto;
     border-radius: 8px;
     object-fit: cover;
-    /* optional: tidy cropping if you set a fixed height later */
 }
 
 .bio-text {
-    flex: 1 1 0;
+    flex: 1 1 1;
     min-width: 0;
 }
 
@@ -521,7 +526,6 @@ p {
     flex: 1 1 auto;
     min-width: 0;
     max-width: 60ch;
-    /* readable line length */
     margin: 0;
     color: #fff;
     overflow-wrap: anywhere;
@@ -568,4 +572,322 @@ p {
         width: 48px;
         height: 48px;
     }
+}
+
+/* =============================
+   DEBUG OUTLINES
+   Remove or comment out when not needed.
+   Add the class 'debug' to <body> to enable a more subtle version.
+============================== */
+/* Always-on global outline for immediate layout debugging */
+* {
+    outline: 1px solid rgba(0, 160, 255, 0.35);
+    outline-offset: -1px;
+    /* keep outlines tight */
+}
+
+/* Optional: Activate multi-layer subtle outlines only when body has .debug */
+body.debug * {
+    outline: 1px solid rgba(255, 0, 128, 0.35);
+}
+
+body.debug *:hover {
+    outline-color: rgba(255, 255, 0, 0.7);
+}
+
+/* Contact Section */
+.contact {
+    min-height: 100vh;
+    background-color: rgb(75, 32, 29);
+    /* same as .music */
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 80px 64px 64px;
+    box-sizing: border-box;
+}
+
+.contact-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: min(900px, 100%);
+}
+
+.contact h1 {
+    width: 100%;
+    margin: 0 0 24px 0;
+    font-size: clamp(2.4rem, 4vw + 0.5rem, 3.5rem);
+    line-height: 1.1;
+    color: #fff;
+}
+
+.contact-content {
+    display: flex;
+    flex-direction: row;
+    width: min(900px, 100%);
+}
+
+.contact-content img {
+    flex: 0 1 clamp(220px, 32vw, 420px);
+    min-width: 0;
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-right: 24px;
+}
+
+.contact-form {
+    flex: 1;
+    display: grid;
+    gap: 14px;
+}
+
+.contact-form .field {
+    display: grid;
+    gap: 6px;
+}
+
+.contact-form label {
+    font-size: 0.95rem;
+    opacity: 0.95;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(0, 0, 0, 0.2);
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 1rem;
+}
+
+.contact-form input.is-invalid,
+.contact-form textarea.is-invalid {
+    border-color: rgba(200, 80, 80, 0.8);
+    box-shadow: 0 0 0 2px rgba(200, 80, 80, 0.35);
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    /* Use variables for easier future theming */
+    border-color: var(--form-focus-border);
+    box-shadow: 0 0 0 2px var(--form-focus-ring);
+}
+
+/* Maintain strong error appearance even on focus */
+.contact-form input.is-invalid:focus,
+.contact-form textarea.is-invalid:focus {
+    border-color: rgba(200, 80, 80, 0.9);
+    box-shadow: 0 0 0 2px rgba(200, 80, 80, 0.45);
+}
+
+.contact-form .actions {
+    margin-top: 8px;
+}
+
+.error-msg {
+    margin: 4px 0 0;
+    font-size: 0.75rem;
+    line-height: 1.2;
+    color: rgba(255, 130, 130, 0.95);
+    font-family: var(--font-body);
+}
+
+/* Popup (custom alert replacement) */
+.popup {
+    position: fixed;
+    inset: 0;
+    z-index: 1500;
+    /* above header and drawer */
+}
+
+.popup[hidden] {
+    display: none;
+}
+
+.popup__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(2px);
+}
+
+.popup__panel {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(560px, 92%);
+    background: #0f0f0f;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+    padding: 18px 18px 14px;
+}
+
+.popup__title {
+    margin: 0 32px 8px 0;
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+}
+
+.popup__desc {
+    margin: 0 0 12px 0;
+    line-height: 1.55;
+}
+
+.popup__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.popup__close {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 6px;
+    width: 32px;
+    height: 32px;
+    line-height: 28px;
+    text-align: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.popup__close:hover,
+.popup__close:focus {
+    border-color: rgb(130, 50, 43);
+}
+
+/* Variants */
+.popup--success .popup__panel {
+    border-color: rgba(60, 200, 120, 0.6);
+}
+
+.popup--error .popup__panel {
+    border-color: rgba(200, 80, 80, 0.6);
+}
+
+/* Footer */
+.site-footer {
+    background: #0d0d0d;
+    color: #fff;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 28px 40px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 16px;
+    align-items: center;
+}
+
+/* .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+} */
+
+.footer-title {
+    font-family: var(--font-heading);
+    color: rgb(130, 50, 43);
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    font-size: clamp(1.3rem, 2.2vw + 0.2rem, 2rem);
+}
+
+.footer-nav {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.footer-nav a,
+.footer-social a {
+    color: #fff;
+    text-decoration: none;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    padding: 4px 8px;
+    transition: color .2s, border-color .2s, background .2s;
+}
+
+.footer-nav a:hover,
+.footer-nav a:focus,
+.footer-social a:hover,
+.footer-social a:focus {
+    color: #fff;
+    border-color: rgb(130, 50, 43);
+    background: rgba(130, 50, 43, 0.15);
+}
+
+.footer-social {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+.footer-bottom {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 40px 24px;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.back-to-top {
+    color: #fff;
+    text-decoration: none;
+}
+
+.back-to-top:hover,
+.back-to-top:focus {
+    color: #fff;
+    text-decoration: underline;
+}
+
+@media (max-width: 800px) {
+    .footer-inner {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+    }
+
+    .footer-social {
+        justify-content: center;
+    }
+}
+
+/* Optional smooth scrolling for in-page links */
+html {
+    scroll-behavior: smooth;
 }

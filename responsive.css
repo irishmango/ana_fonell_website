@@ -131,10 +131,19 @@
         flex-direction: column;
     }
 
-    .contact-content img {
+    .contact-info {
         margin-right: 0;
         margin-bottom: 16px;
         width: 100%;
+    }
+
+    /* Keep contact info spacing tighter on mobile */
+    .contact-info__block+.contact-info__block {
+        margin-top: 8px;
+    }
+
+    .contact-info p {
+        margin: 0 0 8px 0;
     }
 
     .contact-form .actions .btn {
@@ -145,6 +154,39 @@
     .footer-inner {
         grid-template-columns: 1fr;
         text-align: center;
+    }
+
+    /* Albums carousel: keep carousel but shrink card width and center it */
+    .albums__page {
+        justify-items: center;
+    }
+
+    .album-card,
+    .album-card--empty {
+        width: 70%;
+        max-width: 260px;
+        margin: 0 auto;
+    }
+
+    .album-card__cover {
+        aspect-ratio: 1 / 1;
+    }
+
+    .album-card__title {
+        font-size: 0.95rem;
+    }
+
+    .album-card__meta {
+        font-size: 0.8rem;
+    }
+
+    .album-card--empty {
+        min-height: 0;
+        padding: 28px 12px;
+    }
+
+    .album-card__emptyMsg {
+        font-size: 0.9rem;
     }
 
     /* Allow footer nav links to wrap to new lines on small screens */

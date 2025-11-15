@@ -72,7 +72,7 @@
 
             <div class="player" role="region" aria-label="Music player">
                 <div class="player__now">
-                    <img class="player__cover" alt="" src="assets/img/ana_shoes.jpg" width="64" height="64">
+                    <img class="player__cover" alt="" src="assets/img/accordion-image.webp" width="64" height="64">
                     <div class="player__meta">
                         <div class="player__title">Track title</div>
                         <div class="player__artist">Artist</div>
@@ -104,6 +104,22 @@
             <ol class="playlist" aria-label="Playlist"></ol>
 
             <audio id="audio" preload="metadata"></audio>
+
+            <!-- Albums carousel -->
+            <section class="albums" aria-labelledby="albums-heading">
+                <h2 id="albums-heading" data-i18n="albums.title">Albums</h2>
+                <div class="albums-carousel" role="region" aria-label="Albums">
+                    <button class="albums__arrow albums__arrow--prev" type="button" aria-label="Previous albums">
+                        <span class="icon icon-prev icon--lg" aria-hidden="true"></span>
+                    </button>
+                    <div class="albums__viewport">
+                        <div class="albums__track" aria-live="polite"></div>
+                    </div>
+                    <button class="albums__arrow albums__arrow--next" type="button" aria-label="Next albums">
+                        <span class="icon icon-next icon--lg" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </section>
         </section>
 
         <section id="bio" class="bio">
@@ -132,7 +148,22 @@
             <div class="contact-wrapper">
                 <h1 id="contact-heading" data-i18n="contact.title"></h1>
                 <div class="contact-content">
-                    <img src="assets/img/contact-image.webp" alt="Oliverio Girondo" loading="lazy">
+                    <div class="contact-info" aria-label="Contact details">
+                        <p data-i18n="contact.info.intro"></p>
+                        <div class="contact-info__block">
+                            <h3 data-i18n="contact.info.locationTitle"></h3>
+                            <p data-i18n="contact.info.location"></p>
+                            <p data-i18n="contact.info.touring"></p>
+                        </div>
+                        <div class="contact-info__block">
+                            <h3 data-i18n="contact.info.emailTitle"></h3>
+                            <p><a href="mailto:anaberlin@postdeo.com">anaberlin@postdeo.com</a></p>
+                        </div>
+                        <div class="contact-info__block">
+                            <h3 data-i18n="contact.info.bookingTitle"></h3>
+                            <p data-i18n="contact.info.bookingKinds"></p>
+                        </div>
+                    </div>
                     <form id="contactForm" class="contact-form" action="https://formspree.io/f/xovyjrwp" method="POST"
                         novalidate>
                         <div class="field">
@@ -157,8 +188,7 @@
 
                     </form>
                 </div>
-                <p class="contact-alt-email"><span data-i18n="contact.orEmail"></span> <a
-                        href="mailto:anaberlin@postdeo.com">anaberlin@postdeo.com</a></p>
+
             </div>
         </section>
 
@@ -208,7 +238,8 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="app.js"></script>
+    <script src="music.js"></script>
 </body>
 
 </html>

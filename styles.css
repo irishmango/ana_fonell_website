@@ -4,6 +4,13 @@
     --hero-overlay: rgba(0, 0, 0, 0.45);
     --form-focus-border: rgba(255, 255, 255, 0.85);
     --form-focus-ring: rgba(255, 255, 255, 0.35);
+    /* Primary brand color tokens */
+    --color-primary: rgb(180, 70, 60);
+    /* deep brand red */
+    --color-primary-alt: rgb(130, 50, 43);
+    /* alternate red variant */
+    /* Dynamic nav hover color; JS updates this based on underlying section */
+    --nav-hover-color: var(--color-primary);
 }
 
 body {
@@ -59,7 +66,7 @@ p {
 }
 
 .menu-button:hover {
-    color: rgb(130, 50, 43);
+    color: var(--color-primary);
 }
 
 .nav {
@@ -101,11 +108,11 @@ p {
 
 .nav_link:hover,
 .nav_link:focus {
-    color: rgb(130, 50, 43);
+    color: var(--nav-hover-color);
 }
 
 .nav_link[aria-current="page"] {
-    color: rgb(130, 50, 43);
+    color: var(--nav-hover-color);
 }
 
 .lang-switch {
@@ -128,9 +135,9 @@ p {
 
 .lang-switch_link:hover,
 .lang-switch_link:focus {
-    background: rgb(130, 50, 43);
+    background: var(--color-primary);
     color: #fff;
-    border-color: rgb(130, 50, 43);
+    border-color: var(--color-primary);
 }
 
 /* Language dropdown */
@@ -177,7 +184,7 @@ p {
 
 .lang-menu a:hover,
 .lang-menu a:focus {
-    background: rgb(130, 50, 43);
+    background: var(--color-primary);
     color: #fff;
 }
 
@@ -207,7 +214,7 @@ p {
 .hero h1 {
     font-family: var(--font-heading);
     font-size: clamp(3.2rem, 7vw + 0.5rem, 6rem);
-    color: rgb(130, 50, 43);
+    color: var(--color-primary);
     margin: 0;
     text-align: center;
     letter-spacing: 0.5px;
@@ -287,7 +294,7 @@ p {
 
 .drawer__link:hover,
 .drawer__link:focus {
-    color: rgb(200, 160, 155);
+    color: var(--color-primary-alt);
 }
 
 /* Responsive switch: nav -> menu button */
@@ -306,7 +313,7 @@ p {
 
 .music {
     min-height: 100vh;
-    background-color: rgb(75, 32, 29);
+    background-color: var(--color-primary-alt);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -490,6 +497,12 @@ p {
     mask-image: url('assets/icons/volume.svg');
 }
 
+/* Larger icon size utility (for carousel arrows, etc.) */
+.icon--lg {
+    width: 32px;
+    height: 32px;
+}
+
 /* Playing state: draw pause bars */
 .btn--play.is-playing .icon-play {
     -webkit-mask-image: url('assets/icons/pause.svg');
@@ -562,7 +575,7 @@ p {
     min-height: 100vh;
     font-size: 0.95rem;
     line-height: 1.6;
-    background-color: rgb(130, 50, 43);
+    background-color: var(--color-primary);
     width: 100%;
     padding: 80px 64px 64px;
     box-sizing: border-box;
@@ -676,7 +689,7 @@ p {
 /* Contact Section */
 .contact {
     min-height: 100vh;
-    background-color: rgb(75, 32, 29);
+    background-color: var(--color-primary-alt);
     /* same as .music */
     color: #fff;
     display: flex;
@@ -708,14 +721,38 @@ p {
     width: min(900px, 100%);
 }
 
-.contact-content img {
+/* Contact info panel (replaces image on the left) */
+.contact-info {
     flex: 0 1 clamp(220px, 32vw, 420px);
     min-width: 0;
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    object-fit: cover;
+    color: #fff;
     margin-right: 24px;
+}
+
+.contact-info__block+.contact-info__block {
+    margin-top: 16px;
+}
+
+.contact-info h3 {
+    margin: 12px 0 4px;
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+}
+
+.contact-info p {
+    margin: 0 0 16px 0;
+}
+
+/* Contact info links (e.g., email) */
+.contact-info a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.contact-info a:hover,
+.contact-info a:focus {
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
 }
 
 .contact-form {
@@ -953,7 +990,7 @@ p {
 
 .popup__close:hover,
 .popup__close:focus {
-    border-color: rgb(130, 50, 43);
+    border-color: var(--color-primary);
 }
 
 /* Variants */
@@ -990,7 +1027,7 @@ p {
 
 .footer-title {
     font-family: var(--font-heading);
-    color: rgb(130, 50, 43);
+    color: var(--color-primary);
     text-decoration: none;
     letter-spacing: 0.5px;
     font-size: clamp(1.3rem, 2.2vw + 0.2rem, 2rem);
@@ -1020,7 +1057,7 @@ p {
 .footer-social a:hover,
 .footer-social a:focus {
     color: #fff;
-    border-color: rgb(130, 50, 43);
+    border-color: var(--color-primary);
     background: rgba(130, 50, 43, 0.15);
 }
 
@@ -1051,6 +1088,154 @@ p {
 .back-to-top:focus {
     color: #fff;
     text-decoration: underline;
+}
+
+/* Albums carousel */
+.albums {
+    width: min(920px, 100%);
+    margin: 28px auto 0;
+}
+
+.albums h2 {
+    margin: 18px 0 12px;
+    font-size: clamp(1.6rem, 2.4vw, 2rem);
+}
+
+.albums-carousel {
+    position: relative;
+    width: 100%;
+}
+
+.albums__viewport {
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    background: rgba(0, 0, 0, 0.15);
+}
+
+.albums__track {
+    display: flex;
+    width: 100%;
+    transition: transform 320ms ease;
+    will-change: transform;
+}
+
+/* Each page spans full viewport width */
+.albums__page {
+    flex: 0 0 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    padding: 14px;
+    box-sizing: border-box;
+}
+
+/* Album card */
+.album-card {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    gap: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    background: rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.album-card__cover {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+}
+
+.album-card__body {
+    padding: 8px 10px 10px;
+}
+
+.album-card__title {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+}
+
+.album-card__meta {
+    margin: 2px 0 0;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* Empty album placeholder */
+.album-card--empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    min-height: 220px;
+    aspect-ratio: 1 / 1;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.album-card__emptyMsg {
+    margin: 0;
+    font-size: 1.05rem;
+    color: #fff;
+    opacity: 0.95;
+}
+
+/* Carousel arrows */
+.albums__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 999px;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    transition: background .2s, border-color .2s;
+    z-index: 2;
+}
+
+.albums__arrow:hover,
+.albums__arrow:focus {
+    background: rgba(0, 0, 0, 0.35);
+    border-color: var(--color-primary);
+}
+
+.albums__arrow[disabled] {
+    opacity: 0.4;
+    cursor: default;
+}
+
+.albums__arrow--prev {
+    left: 6px;
+}
+
+.albums__arrow--next {
+    right: 6px;
+}
+
+/* Responsive pages per row */
+@media (max-width: 1024px) {
+    .albums__page {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 700px) {
+    .albums {
+        width: 100%;
+    }
+
+    .albums__page {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 10px;
+    }
 }
 
 @media (max-width: 800px) {

@@ -1,0 +1,76 @@
+{
+    "albums": [
+        {
+            "id": "tango",
+            "title": "Tango",
+            "cover": "assets/img/accordion-image.webp",
+            "year": 2025,
+            "tracks": [
+                {
+                    "title": "Los Mareados",
+                    "artist": "Ana Fonell",
+                    "details": "mit Quique Sinesi (Gitarre) • 2025",
+                    "year": 2025,
+                    "src": "assets/audio/los_mareados.mp3",
+                    "cover": "assets/img/accordion-image.webp"
+                },
+                {
+                    "title": "Caserón de Tejas",
+                    "artist": "Ana Fonell",
+                    "details": "mit Quique Sinesi (Gitarre) • 2025",
+                    "year": 2025,
+                    "src": "assets/audio/caseron_de_tejas.mp3",
+                    "cover": "assets/img/accordion-image.webp"
+                },
+                {
+                    "title": "Negra Maria",
+                    "artist": "Ana Fonell",
+                    "details": "mit Pablo Woizinski (Piano) und César Nigro (Gitarre) • 2006",
+                    "year": 2006,
+                    "src": "assets/audio/negra_maria.mp3",
+                    "cover": "assets/img/accordion-image.webp"
+                },
+                {
+                    "title": "Nostalgias",
+                    "artist": "Ana Fonell",
+                    "details": "mit Quique Sinesi (Gitarre) • 2004",
+                    "year": 2004,
+                    "src": "assets/audio/nostalgias_live.mp3",
+                    "cover": "assets/img/accordion-image.webp"
+                },
+                {
+                    "title": "Che Bandoneón",
+                    "artist": "Ana Fonell",
+                    "details": "mit Fernando Maguna (Piano) und Diego Trosman (Gitarre) • 2002",
+                    "year": 2002,
+                    "src": "assets/audio/che_bandoneon_live.mp3",
+                    "cover": "assets/img/accordion-image.webp"
+                },
+                {
+                    "title": "Vamos Nina",
+                    "artist": "Ana Fonell",
+                    "details": "mit Corinna Söller (Klavier) und Katja Kulesza (Violine) • 2002",
+                    "year": 2002,
+                    "src": "assets/audio/vamos_nina.mp3",
+                    "cover": "assets/img/accordion-image.webp"
+                },
+                {
+                    "title": "Chiquilín de Bachín",
+                    "artist": "Ana Fonell",
+                    "details": "mit Gustavo Battistessa (Bandoneon) und Marcelo Iglesias (Piano) • 1998",
+                    "year": 1998,
+                    "src": "assets/audio/chiquilín_de_bachin.mp3",
+                    "cover": "assets/img/accordion-image.webp"
+                },
+                {
+                    "title": "El Choclo",
+                    "artist": "Ana Fonell",
+                    "details": "mit Coco Nelegatti (Gitarre) • 1998",
+                    "year": 1998,
+                    "src": "assets/audio/el_choclo.mp3",
+                    "cover": "assets/img/accordion-image.webp"
+                }
+            ]
+        }
+    ]
+}

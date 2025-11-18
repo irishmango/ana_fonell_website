@@ -2,7 +2,7 @@
     "albums": [
         {
             "id": "tango",
-            "title": "Tango",
+            "title": "Tango Argentino",
             "cover": "assets/img/accordion-image.webp",
             "year": 2025,
             "tracks": [

@@ -1,13 +1,13 @@
 {
-  "title": "Política de privacidad",
-  "intro": "Valoramos su privacidad. En esta página explicamos qué datos personales recopilamos cuando se pone en contacto con nosotros y cómo los utilizamos y protegemos.",
-  "contact": {
-    "title": "Contacto",
-    "text": "Si se comunica con nosotros a través del formulario o por correo electrónico, procesamos sus datos para responder a su consulta. Sus datos no se compartirán con terceros sin su consentimiento."
-  },
-  "rights": {
-    "title": "Sus derechos",
-    "text": "Usted tiene derecho de acceso, rectificación, supresión y limitación del tratamiento de sus datos personales, así como el derecho a la portabilidad de los datos cuando corresponda. Puede retirar su consentimiento en cualquier momento con efectos para el futuro."
-  },
-  "updated": "Última actualización: 2025-11-18"
+    "title": "Política de privacidad",
+    "intro": "Valoramos su privacidad. En esta página explicamos qué datos personales recopilamos cuando se pone en contacto con nosotros y cómo los utilizamos y protegemos.",
+    "contact": {
+        "title": "Contacto",
+        "text": "Si se comunica con nosotros a través del formulario o por correo electrónico, procesamos sus datos para responder a su consulta. Sus datos no se compartirán con terceros sin su consentimiento."
+    },
+    "rights": {
+        "title": "Sus derechos",
+        "text": "Usted tiene derecho de acceso, rectificación, supresión y limitación del tratamiento de sus datos personales, así como el derecho a la portabilidad de los datos cuando corresponda. Puede retirar su consentimiento en cualquier momento con efectos para el futuro."
+    },
+    "updated": "Última actualización: 2025-11-18"
 }

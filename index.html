@@ -146,8 +146,8 @@
 
         <section id="contact" class="contact" aria-labelledby="contact-heading">
             <div class="contact-wrapper">
-                <h1 id="contact-heading" data-i18n="contact.title"></h1>
-                <div class="contact-content">
+                <div class="contact-content-left">
+                    <h1 id="contact-heading" data-i18n="contact.title"></h1>
                     <div class="contact-info" aria-label="Contact details">
                         <p data-i18n="contact.info.intro"></p>
                         <div class="contact-info__block">
@@ -164,30 +164,30 @@
                             <p data-i18n="contact.info.bookingKinds"></p>
                         </div>
                     </div>
-                    <form id="contactForm" class="contact-form" action="https://formspree.io/f/mdkbkrnj" method="POST"
-                        novalidate>
-                        <div class="field">
-                            <label for="name" data-i18n="contact.name"></label>
-                            <input id="name" name="name" type="text" autocomplete="name"
-                                data-i18n-placeholder="contact.name" placeholder="" required>
-                        </div>
-                        <div class="field">
-                            <label for="email" data-i18n="contact.email"></label>
-                            <input id="email" name="email" type="email" autocomplete="email"
-                                data-i18n-placeholder="contact.email" placeholder="" required>
-                        </div>
-                        <div class="field">
-                            <label for="message" data-i18n="contact.message"></label>
-                            <textarea id="message" name="message" rows="6" data-i18n-placeholder="contact.message"
-                                placeholder="" required></textarea>
-                        </div>
-
-                        <div class="actions">
-                            <button class="btn" type="submit" data-i18n="contact.send"></button>
-                        </div>
-
-                    </form>
                 </div>
+                <form id="contactForm" class="contact-form" action="https://formspree.io/f/mdkbkrnj" method="POST"
+                    novalidate>
+                    <div class="field">
+                        <label for="name" data-i18n="contact.name"></label>
+                        <input id="name" name="name" type="text" autocomplete="name"
+                            data-i18n-placeholder="contact.name" placeholder="" required>
+                    </div>
+                    <div class="field">
+                        <label for="email" data-i18n="contact.email"></label>
+                        <input id="email" name="email" type="email" autocomplete="email"
+                            data-i18n-placeholder="contact.email" placeholder="" required>
+                    </div>
+                    <div class="field">
+                        <label for="message" data-i18n="contact.message"></label>
+                        <textarea id="message" name="message" rows="6" data-i18n-placeholder="contact.message"
+                            placeholder="" required></textarea>
+                    </div>
+
+                    <div class="actions">
+                        <button class="btn" type="submit" data-i18n="contact.send"></button>
+                    </div>
+
+                </form>
 
             </div>
         </section>

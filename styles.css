@@ -36,7 +36,7 @@ h6 {
 }
 
 p {
-    font-family: var(--font-body);
+    font-family: var(--font-heading);
 }
 
 
@@ -46,7 +46,6 @@ p {
     inset: 0 0 auto 0;
     width: 100%;
     z-index: 1000;
-    /* keep header (menu button) above drawer */
     background: transparent;
 }
 
@@ -96,7 +95,7 @@ p {
 .nav_link {
     position: relative;
     display: inline-block;
-    font-family: var(--font-body);
+    font-family: var(--font-heading);
     font-size: 1.15rem;
     /* increased link size */
     letter-spacing: 0.5px;
@@ -121,7 +120,7 @@ p {
 }
 
 .lang-switch_link {
-    font-family: var(--font-body);
+    font-family: var(--font-heading);
     font-size: 0.9rem;
     letter-spacing: 1px;
     color: #ffffff;
@@ -709,8 +708,8 @@ p {
 
 .contact-wrapper {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    align-items: flex-start;
     width: min(900px, 100%);
 }
 
@@ -726,6 +725,10 @@ p {
     display: flex;
     flex-direction: row;
     width: min(900px, 100%);
+}
+
+.contact-content-left {
+    width: max(450px, 25%);
 }
 
 /* Contact info panel (replaces image on the left) */

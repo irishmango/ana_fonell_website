@@ -145,11 +145,13 @@ const I18N = (() => {
     if (!sections.length || !links.length) return;
 
     // Accent mapping per section (tweak as desired)
+    // Choose a contrasting brand color for each section background
+    // so hover/active links never match the section color beneath.
     const accentMap = {
-        home: 'var(--color-primary)',
-        music: 'var(--color-primary-alt)',
-        bio: 'var(--color-primary)',
-        contact: 'var(--color-primary-alt)'
+        home: 'var(--color-primary)',        // hero image – primary looks good
+        music: 'var(--color-primary)',       // music bg uses primary-alt → use primary for contrast
+        bio: 'var(--color-primary-alt)',     // bio bg uses primary → use primary-alt for contrast
+        contact: 'var(--color-primary)'      // contact bg uses primary-alt → use primary for contrast
     };
 
     const map = new Map();
@@ -168,8 +170,10 @@ const I18N = (() => {
     };
 
     function updateAccent(id) {
-        // Force strong contrast when intersecting/active: use black for nav link hover/active
-        const color = '#000';
+        // Use section-aware brand accents so hovered/active nav links
+        // adopt either --color-primary or --color-primary-alt depending
+        // on which section is currently in view.
+        const color = accentMap[id] || accentMap.home;
         document.documentElement.style.setProperty('--nav-hover-color', color);
     }
 

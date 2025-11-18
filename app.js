@@ -168,7 +168,8 @@ const I18N = (() => {
     };
 
     function updateAccent(id) {
-        const color = accentMap[id] || accentMap.home;
+        // Force strong contrast when intersecting/active: use black for nav link hover/active
+        const color = '#000';
         document.documentElement.style.setProperty('--nav-hover-color', color);
     }
 

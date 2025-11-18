@@ -243,6 +243,13 @@ p {
     color: #ffffff;
 }
 
+/* Nudge hero title slightly lower on desktop only */
+@media (min-width: 701px) {
+    .title {
+        top: 56%;
+    }
+}
+
 /* Drawer styles (full-screen, from above) */
 .drawer {
     position: fixed;

@@ -1,6 +1,5 @@
 /* Press Section Styles (refactored to use pagination dots instead of arrows) */
 .press {
-    min-height: 100vh;
     background-color: var(--color-primary-alt);
     color: #fff;
     display: flex;
@@ -170,6 +169,30 @@
         flex: 0 0 100%;
         min-width: 100%;
         scroll-snap-align: start;
+    }
+
+    /* Move arrow controls below the cards so cards can use full width */
+    .press-controls {
+        position: static;
+        transform: none;
+        width: 100%;
+        justify-content: center;
+        gap: 18px;
+        margin: 18px 0 0;
+        pointer-events: auto;
+        /* restore normal interaction */
+    }
+
+    /* Remove desktop side gutters on mobile for true full-width cards */
+    .press-wrapper {
+        padding: 0 0;
+        /* rely on section padding only */
+    }
+
+    .press-arrow--prev,
+    .press-arrow--next {
+        margin: 0;
+        /* reset side margins from desktop */
     }
 
     .press-pagination {

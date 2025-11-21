@@ -578,7 +578,6 @@ p {
 }
 
 .bio {
-    min-height: 90vh;
     font-size: 0.95rem;
     line-height: 1.6;
     background-color: var(--color-primary);
@@ -694,7 +693,6 @@ p {
 
 /* Contact Section */
 .contact {
-    /* Allow section to grow naturally with its content (hug contents) */
     background-color: var(--color-primary-alt);
     color: #fff;
     display: flex;

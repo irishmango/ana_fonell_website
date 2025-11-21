@@ -138,6 +138,8 @@
         justify-content: center;
         width: 100%;
         max-width: 100%;
+        align-items: center;
+        /* center inner blocks horizontally */
     }
 
     .contact-info {
@@ -158,6 +160,11 @@
     }
 
     .contact-form {
+        width: 100%;
+    }
+
+    /* Ensure left content block doesn't force a min width larger than viewport */
+    .contact-content-left {
         width: 100%;
     }
 

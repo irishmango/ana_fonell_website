@@ -582,7 +582,7 @@ p {
     line-height: 1.6;
     background-color: var(--color-primary);
     width: 100%;
-    padding: 80px 64px 64px;
+    padding: 80px 64px 124px;
     box-sizing: border-box;
 }
 

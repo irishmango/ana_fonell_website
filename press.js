@@ -1,6 +1,7 @@
 (function () {
     const container = document.querySelector('.press-articles');
-    const dotsWrap = document.querySelector('.press-pagination');
+    const prevBtn = document.querySelector('.press-arrow--prev');
+    const nextBtn = document.querySelector('.press-arrow--next');
     if (!container) return;
 
     // Determine language (same approach as app.js would) from URL param or <html lang>
@@ -36,8 +37,8 @@
             `;
             container.appendChild(card);
         });
-        buildDots();
-        updateActiveDot();
+        buildPages();
+        updateArrows();
     }
 
     function escapeHtml(str) {
@@ -64,39 +65,31 @@
     container.addEventListener('pointerup', e => { isDown = false; container.releasePointerCapture(e.pointerId); });
     container.addEventListener('pointerleave', () => { isDown = false; });
 
-    // Pagination dots logic
-    // Build pagination dots: limit to 3 groups if more than 3 cards
+    // Arrow / page logic: group cards into up to 3 pages and compute start offsets
     let pageOffsets = [];
-    function buildDots() {
-        if (!dotsWrap) return;
-        dotsWrap.innerHTML = '';
+    function buildPages() {
         const cards = [...container.querySelectorAll('.press-card')];
         const total = cards.length;
-        const labelMap = { en: 'Review', de: 'Rezension', es: 'Reseña' };
-        const base = labelMap[lang] || labelMap.en;
-
-        let pages;
+        let pages = [];
         if (total <= 3) {
-            // One dot per card
-            pages = cards.map((c, i) => ({ index: i, label: base + ' ' + (i + 1) }));
+            pages = cards.map((c, i) => ({ index: i }));
         } else {
-            // Group into 3 roughly equal pages
             const groups = 3;
             const perGroup = Math.ceil(total / groups);
-            pages = Array.from({ length: groups }, (_, g) => {
-                const startIndex = g * perGroup;
-                return { index: startIndex, label: base + ' ' + (g + 1) };
-            });
+            pages = Array.from({ length: groups }, (_, g) => ({ index: g * perGroup }));
         }
-        pageOffsets = pages.map(p => cards[p.index]?.offsetLeft || 0);
-
-        pages.forEach((p, i) => {
-            const btn = document.createElement('button');
-            btn.type = 'button';
-            btn.className = 'press-dot';
-            btn.setAttribute('aria-label', p.label);
-            btn.addEventListener('click', () => scrollToPage(i));
-            dotsWrap.appendChild(btn);
+        // compute offsets (use left position of start card)
+        pageOffsets = pages.map(p => {
+            const card = cards[p.index];
+            return card ? card.offsetLeft : 0;
+        });
+        // ensure offsets exist after layout (recompute on next frame)
+        requestAnimationFrame(() => {
+            pageOffsets = pages.map(p => {
+                const card = cards[p.index];
+                return card ? card.offsetLeft : 0;
+            });
+            updateArrows();
         });
     }
 
@@ -104,30 +97,36 @@
         const targetOffset = pageOffsets[pageIndex];
         if (targetOffset === undefined) return;
         container.scrollTo({ left: targetOffset, behavior: 'smooth' });
-        setTimeout(updateActiveDot, 350);
+        setTimeout(() => updateArrows(), 350);
     }
 
-    function updateActiveDot() {
-        if (!dotsWrap) return;
-        const dots = [...dotsWrap.querySelectorAll('.press-dot')];
-        if (!dots.length) return;
+    function getActivePage() {
+        if (!pageOffsets.length) return 0;
         const scrollLeft = container.scrollLeft;
-        let activePage = 0;
-        let minDist = Infinity;
+        let active = 0; let min = Infinity;
         pageOffsets.forEach((off, i) => {
-            const dist = Math.abs(off - scrollLeft);
-            if (dist < minDist) { minDist = dist; activePage = i; }
+            const d = Math.abs(off - scrollLeft);
+            if (d < min) { min = d; active = i; }
         });
-        dots.forEach((d, i) => {
-            if (i === activePage) { d.classList.add('is-active'); d.setAttribute('aria-current', 'true'); }
-            else { d.classList.remove('is-active'); d.removeAttribute('aria-current'); }
-        });
+        return active;
     }
+
+    function updateArrows() {
+        if (!prevBtn && !nextBtn) return;
+        const active = getActivePage();
+        if (prevBtn) { if (active === 0) prevBtn.setAttribute('disabled', ''); else prevBtn.removeAttribute('disabled'); }
+        if (nextBtn) { if (active >= pageOffsets.length - 1) nextBtn.setAttribute('disabled', ''); else nextBtn.removeAttribute('disabled'); }
+    }
+
+    function goPrev() { const a = getActivePage(); scrollToPage(Math.max(0, a - 1)); }
+    function goNext() { const a = getActivePage(); scrollToPage(Math.min(pageOffsets.length - 1, a + 1)); }
+
+    prevBtn && prevBtn.addEventListener('click', goPrev);
+    nextBtn && nextBtn.addEventListener('click', goNext);
 
     container.addEventListener('scroll', () => {
-        // Throttle using requestAnimationFrame
-        if (updateActiveDot._raf) return;
-        updateActiveDot._raf = requestAnimationFrame(() => { updateActiveDot(); updateActiveDot._raf = null; });
+        if (updateArrows._raf) return;
+        updateArrows._raf = requestAnimationFrame(() => { updateArrows(); updateArrows._raf = null; });
     });
-    window.addEventListener('resize', () => updateActiveDot());
+    window.addEventListener('resize', () => buildPages());
 })();

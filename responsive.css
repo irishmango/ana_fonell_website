@@ -127,14 +127,24 @@
     }
 
     /* Contact */
-    .contact-content {
+    .contact {
+        justify-content: center;
+        align-self: center;
+    }
+
+    .contact-wrapper {
         flex-direction: column;
+        align-self: center;
+        justify-content: center;
+        width: 100%;
+        max-width: 100%;
     }
 
     .contact-info {
         margin-right: 0;
         margin-bottom: 16px;
         width: 100%;
+        text-align: center; /* center text blocks */
     }
 
     /* Keep contact info spacing tighter on mobile */
@@ -146,7 +156,24 @@
         margin: 0 0 8px 0;
     }
 
+    .contact-form {
+        width: 100%;
+    }
+
     .contact-form .actions .btn {
+        width: 100%;
+    }
+
+    /* Center headings and labels for a unified mobile layout */
+    .contact h1,
+    .contact-form label,
+    .contact-info h3 {
+        text-align: center;
+    }
+
+    /* Ensure form fields span full width */
+    .contact-form input,
+    .contact-form textarea {
         width: 100%;
     }
 

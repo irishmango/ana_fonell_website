@@ -16,6 +16,11 @@
     flex-direction: column;
     align-items: center;
     width: min(1100px, 100%);
+    position: relative;
+    /* ensure absolutely positioned controls anchor here */
+    padding: 0 80px;
+    /* side gutters so arrows don't overlap card content */
+    box-sizing: border-box;
 }
 
 .press h1 {
@@ -32,22 +37,16 @@
     gap: 32px;
     overflow-x: auto;
     padding: 8px 4px 8px;
-    scrollbar-width: thin;
+    scrollbar-width: none;
+    /* hide scrollbar */
+    -ms-overflow-style: none;
+    /* IE/Edge */
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
 }
 
 .press-articles::-webkit-scrollbar {
-    height: 8px;
-}
-
-.press-articles::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.08);
-}
-
-.press-articles::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.35);
-    border-radius: 4px;
+    display: none;
 }
 
 .press-card {
@@ -83,44 +82,73 @@
     white-space: pre-line;
 }
 
-/* Pagination dots */
-.press-pagination {
+/* Arrow controls */
+.press-controls {
+    position: absolute;
+    top: 50%;
+    left: 0;
     width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin-top: 12px;
-    padding: 4px 0 0;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    pointer-events: none;
+    /* allow underlying content to be interactive except buttons */
+    z-index: 5;
+    /* raise above cards */
 }
 
-.press-dot {
-    width: 12px;
-    height: 12px;
+.press-arrow {
+    pointer-events: auto;
+    background: rgba(0, 0, 0, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    color: #fff;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
-    border: 2px solid rgba(255, 255, 255, 0.7);
-    background: transparent;
-    padding: 0;
-    cursor: pointer;
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
-    transition: background .25s ease, transform .25s ease, border-color .25s ease;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    transition: background .18s ease, transform .18s ease, opacity .18s ease;
 }
 
-.press-dot.is-active {
-    background: #fff;
-    transform: scale(1.15);
-    border-color: #fff;
+.press-arrow[disabled] {
+    opacity: .32;
+    cursor: default;
 }
 
-.press-dot:focus-visible {
+.press-arrow:hover:not([disabled]),
+.press-arrow:focus:not([disabled]) {
+    background: rgba(0, 0, 0, 0.75);
+    transform: scale(1.05);
+}
+
+.press-arrow:focus {
     outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
 }
 
-.press-dot:hover {
-    background: rgba(255, 255, 255, 0.35);
+.press-arrow--prev {
+    margin-left: 8px;
+}
+
+.press-arrow--next {
+    margin-right: 8px;
+}
+
+/* Fallback glyphs in case icon font/sprites missing */
+.press-arrow--prev .icon:empty::before {
+    content: '\2039';
+}
+
+.press-arrow--next .icon:empty::before {
+    content: '\203A';
+}
+
+.press-arrow .icon {
+    display: inline-block;
+    font-size: 20px;
+    line-height: 1;
 }
 
 @media (max-width: 900px) {

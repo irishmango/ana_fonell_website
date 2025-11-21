@@ -1,13 +1,12 @@
 /* Gallery & Lightbox styles extracted from styles.css */
 .gallery {
-    min-height: 100vh;
     background-color: var(--color-primary);
     color: #fff;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding: 80px 64px 64px;
+    padding: 80px 64px 100px;
     box-sizing: border-box;
 }
 

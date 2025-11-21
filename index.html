@@ -11,6 +11,8 @@
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="responsive.css">
+    <link rel="stylesheet" href="gallery.css">
+    <link rel="stylesheet" href="press.css">
 </head>
 
 <body>
@@ -24,8 +26,8 @@
                         <li><a href="#home" class="nav_link" data-i18n="nav.home"></a></li>
                         <li><a href="#music" class="nav_link" data-i18n="nav.music"></a></li>
                         <li><a href="#bio" class="nav_link" data-i18n="nav.bio"></a></li>
-                        <!-- <li><a href="#projects" class="nav_link" data-i18n="nav.projects"></a></li>
                         <li><a href="#gallery" class="nav_link" data-i18n="nav.gallery"></a></li>
+                        <!-- <li><a href="#projects" class="nav_link" data-i18n="nav.projects"></a></li>
                         <li><a href="#press" class="nav_link" data-i18n="nav.press"></a></li> -->
                         <li><a href="#contact" class="nav_link" data-i18n="nav.contact"></a></li>
                     </ul>
@@ -48,8 +50,8 @@
                         <li><a href="#home" class="drawer__link" data-i18n="nav.home"></a></li>
                         <li><a href="#music" class="drawer__link" data-i18n="nav.music"></a></li>
                         <li><a href="#bio" class="drawer__link" data-i18n="nav.bio"></a></li>
-                        <!-- <li><a href="#projects" class="drawer__link" data-i18n="nav.projects"></a></li>
                         <li><a href="#gallery" class="drawer__link" data-i18n="nav.gallery"></a></li>
+                        <!-- <li><a href="#projects" class="drawer__link" data-i18n="nav.projects"></a></li>
                         <li><a href="#press" class="drawer__link" data-i18n="nav.press"></a></li> -->
                         <li><a href="#contact" class="drawer__link" data-i18n="nav.contact"></a></li>
                     </ul>
@@ -136,6 +138,44 @@
                         <p data-i18n="bio.p4"></p>
                         <p data-i18n="bio.p5"></p>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="press" class="press">
+
+            <div class="press-wrapper">
+                <h1 data-i18n="press.title"></h1>
+                <div class="press-articles" aria-label="Press articles">
+
+                </div>
+                <div class="press-pagination" aria-label="Press navigation"></div>
+            </div>
+
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="gallery" aria-labelledby="gallery-heading">
+            <div class="gallery-wrapper">
+                <h1 id="gallery-heading" data-i18n="gallery.title"></h1>
+                <div class="gallery-grid" aria-label="Gallery of photos">
+                    <button class="gallery-item" type="button" aria-label="Open image 1"><img
+                            src="assets/img/gallery/gallery_color_1.webp" alt="Gallery image 1" loading="lazy"></button>
+                    <button class="gallery-item" type="button" aria-label="Open image 2"><img
+                            src="assets/img/gallery/gallery_color_2.webp" alt="Gallery image 2" loading="lazy"></button>
+                    <button class="gallery-item" type="button" aria-label="Open image 3"><img
+                            src="assets/img/gallery/gallery_color_3.webp" alt="Gallery image 3" loading="lazy"></button>
+                    <button class="gallery-item" type="button" aria-label="Open image 4"><img
+                            src="assets/img/gallery/gallery_color_4.webp" alt="Gallery image 4" loading="lazy"></button>
+                    <button class="gallery-item" type="button" aria-label="Open image 5"><img
+                            src="assets/img/gallery/gallery_color_5.webp" alt="Gallery image 5" loading="lazy"></button>
+                    <button class="gallery-item" type="button" aria-label="Open image 6"><img
+                            src="assets/img/gallery/gallery_color_6.webp" alt="Gallery image 6" loading="lazy"></button>
+                    <button class="gallery-item" type="button" aria-label="Open image 7"><img
+                            src="assets/img/gallery/gallery_bw_1.webp" alt="Gallery image 7" loading="lazy"></button>
+                    <button class="gallery-item" type="button" aria-label="Open image 8"><img
+                            src="assets/img/gallery/ana_shoes_newspaper.webp" alt="Gallery image 8"
+                            loading="lazy"></button>
                 </div>
             </div>
         </section>
@@ -240,6 +280,8 @@
 
     <script src="app.js"></script>
     <script src="music.js"></script>
+    <script src="gallery.js"></script>
+    <script src="press.js"></script>
 </body>
 
 </html>

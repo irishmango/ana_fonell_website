@@ -1,0 +1,150 @@
+/* Press Section Styles (refactored to use pagination dots instead of arrows) */
+.press {
+    min-height: 100vh;
+    background-color: var(--color-primary-alt);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 80px 64px 64px;
+    box-sizing: border-box;
+}
+
+.press-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: min(1100px, 100%);
+}
+
+.press h1 {
+    width: 100%;
+    margin: 0 0 28px;
+    font-size: clamp(2.2rem, 4vw + 0.5rem, 3.2rem);
+    line-height: 1.15;
+}
+
+.press-articles {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    overflow-x: auto;
+    padding: 8px 4px 8px;
+    scrollbar-width: thin;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.press-articles::-webkit-scrollbar {
+    height: 8px;
+}
+
+.press-articles::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.press-articles::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.35);
+    border-radius: 4px;
+}
+
+.press-card {
+    flex: 0 0 340px;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 12px;
+    padding: 20px 22px 24px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    scroll-snap-align: start;
+}
+
+.press-card h3 {
+    margin: 0;
+    font-size: 1.15rem;
+    line-height: 1.2;
+}
+
+.press-meta {
+    font-size: 0.8rem;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    opacity: .85;
+}
+
+.press-text {
+    font-size: .9rem;
+    line-height: 1.4;
+    white-space: pre-line;
+}
+
+/* Pagination dots */
+.press-pagination {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 12px;
+    padding: 4px 0 0;
+}
+
+.press-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .25s ease, transform .25s ease, border-color .25s ease;
+}
+
+.press-dot.is-active {
+    background: #fff;
+    transform: scale(1.15);
+    border-color: #fff;
+}
+
+.press-dot:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+.press-dot:hover {
+    background: rgba(255, 255, 255, 0.35);
+}
+
+@media (max-width: 900px) {
+    .press-card {
+        flex: 0 0 300px;
+    }
+}
+
+@media (max-width: 700px) {
+    .press {
+        padding: 72px 20px 56px;
+    }
+
+    .press-articles {
+        gap: 20px;
+    }
+
+    .press-card {
+        flex: 0 0 100%;
+        min-width: 100%;
+        scroll-snap-align: start;
+    }
+
+    .press-pagination {
+        margin-top: 16px;
+    }
+}

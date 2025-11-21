@@ -694,7 +694,7 @@ p {
 
 /* Contact Section */
 .contact {
-    min-height: 100vh;
+    max-height: 80vh;
     background-color: var(--color-primary-alt);
     /* same as .music */
     color: #fff;
@@ -705,6 +705,7 @@ p {
     padding: 80px 64px 64px;
     box-sizing: border-box;
 }
+
 
 .contact-wrapper {
     display: flex;

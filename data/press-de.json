@@ -1,0 +1,39 @@
+{
+    "reviews": [
+        {
+            "title": "Tango Canción",
+            "publication": "Heidenheimer Zeitung",
+            "year": 2004,
+            "text_1": "Ana Fonell ist eine Künstlerin, die mit ihrer warmen, ausdrucksstarken Stimme die Seele des Tangos zum Leben erweckt. Ihre Interpretation der klassischen Tangos von Astor Piazzolla und anderen großen Komponisten ist von einer Tiefe und Authentizität geprägt, die das Publikum in den Bann zieht.",
+            "text_2": "Besonders beeindruckend ist ihre Fähigkeit, die melancholischen und leidenschaftlichen Aspekte des Tangos gleichermaßen zu vermitteln. Ihre Stimme trägt die Geschichte jedes Liedes mit einer Intensität, die unter die Haut geht."
+        },
+        {
+            "title": "Ana Fonell singt Lieder von Astor Piazzolla",
+            "publication": "Tango Danza",
+            "year": 2004,
+            "text_1": "Mit ihrer einzigartigen Interpretation bringt Ana Fonell die komplexen Kompositionen Piazzollas zu neuem Leben. Ihre musikalische Sensibilität und ihr tiefes Verständnis für die Tango-Tradition machen jede ihrer Darbietungen zu einem unvergesslichen Erlebnis.",
+            "text_2": "Die Künstlerin versteht es meisterhaft, die moderne Sophistication Piazzollas mit der traditionellen Leidenschaft des Tangos zu verbinden. Ihr Gesang ist sowohl technisch versiert als auch emotional bewegend."
+        },
+        {
+            "title": "Canciones Citadinas",
+            "publication": "Argentinisches Tageblatt, Buenos Aires",
+            "year": 2002,
+            "text_1": "Ana Fonells Auftritte in Buenos Aires haben gezeigt, dass sie nicht nur eine begabte Interpretin ist, sondern auch eine Künstlerin, die die kulturellen Brücken zwischen Deutschland und Argentinien mit Respekt und Verständnis schlägt.",
+            "text_2": "Ihre Darbietung der städtischen Lieder war von einer Authentizität geprägt, die sowohl das argentinische als auch das internationale Publikum begeisterte. Sie singt nicht nur Tango - sie lebt ihn."
+        },
+        {
+            "title": "Tango Argentin",
+            "publication": "Wiesbadener Kurier",
+            "year": 2002,
+            "text_1": "Ein Abend mit Ana Fonell ist eine Reise durch die emotionale Landschaft des Tangos. Ihre Stimme navigiert mühelos zwischen Zärtlichkeit und Leidenschaft, zwischen Melancholie und Hoffnung",
+            "text_2": "Die Künstlerin bringt eine seltene Kombination aus technischer Perfektion und emotionaler Tiefe mit, die jeden ihrer Auftritte zu einem besonderen Ereignis macht. Ihr Tango ist pure Poesie in Bewegung und Klang."
+        },
+        {
+            "title": "Berlin meets Buenos Aires",
+            "publication": "Volksstimme, Magdeburg",
+            "year": 1999,
+            "text_1": "Ana Fonell verkörpert die perfekte Synthese zwischen europäischer Musikalität und südamerikanischer Leidenschaft. Ihr Konzert war ein kultureller Dialog, der die Grenzen zwischen den Kontinenten aufhob.",
+            "text_2": "Mit ihrer charismatischen Bühnenpräsenz und ihrer außergewöhnlichen stimmlichen Ausdruckskraft schafft sie es, das Publikum in die Welt des Tangos zu entführen. Ein unvergesslicher Abend voller Emotion und Kunstfertigkeit."
+        }
+    ]
+}

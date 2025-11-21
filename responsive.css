@@ -144,7 +144,8 @@
         margin-right: 0;
         margin-bottom: 16px;
         width: 100%;
-        text-align: center; /* center text blocks */
+        text-align: center;
+        /* center text blocks */
     }
 
     /* Keep contact info spacing tighter on mobile */

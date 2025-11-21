@@ -134,12 +134,10 @@
 
     .contact-wrapper {
         flex-direction: column;
-        align-self: center;
-        justify-content: center;
         width: 100%;
         max-width: 100%;
         align-items: center;
-        /* center inner blocks horizontally */
+        gap: 24px;
     }
 
     .contact-info {
@@ -174,9 +172,12 @@
 
     /* Center headings and labels for a unified mobile layout */
     .contact h1,
-    .contact-form label,
     .contact-info h3 {
         text-align: center;
+    }
+
+    .contact-form label {
+        text-align: start;
     }
 
     /* Ensure form fields span full width */

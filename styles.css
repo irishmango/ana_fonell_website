@@ -661,6 +661,18 @@ p {
     overflow-wrap: anywhere;
 }
 
+.bio-quote {
+    /* Keep quote aligned with the bio content container */
+    width: min(900px, 100%);
+    margin: 64px auto 0;
+    font-style: italic;
+    font-size: 0.8rem;
+    /* smaller than body copy */
+    line-height: 1.5;
+    color: #fff;
+    text-align: right;
+}
+
 .bio-content p+p {
     margin-top: 1rem;
 }

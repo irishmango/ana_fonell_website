@@ -72,12 +72,26 @@ async function loadMusicData() {
         return `${m}:${s}`;
     }
 
+    function ensureCreditsEl() {
+        if (!artistEl) return null;
+        let creditsEl = player.querySelector('.player__credits');
+        if (!creditsEl) {
+            creditsEl = document.createElement('div');
+            creditsEl.className = 'player__credits';
+            artistEl.insertAdjacentElement('afterend', creditsEl);
+        }
+        return creditsEl;
+    }
+
     function load(i) {
         index = (i + tracks.length) % tracks.length;
         const t = tracks[index];
         audio.src = t.src;
         if (titleEl) titleEl.textContent = t.title;
+        const creditsStr = formatCredits(t);
         if (artistEl) artistEl.textContent = t.details || t.artist || "";
+        const creditsEl = ensureCreditsEl();
+        if (creditsEl) creditsEl.textContent = creditsStr;
         if (coverEl) coverEl.src = t.cover || "assets/img/ana_shoes.jpg";
         [...playlistEl.querySelectorAll("button")].forEach((b, bi) =>
             b.classList.toggle("is-active", bi === index)
@@ -102,16 +116,29 @@ async function loadMusicData() {
     function next() { load(index + 1); play(); }
     function prev() { load(index - 1); play(); }
 
+    function formatCredits(t) {
+        if (!t.credits || typeof t.credits !== 'object') return '';
+        const order = ['M', 'L', 'T'];
+        const labelMap = { M: 'Music', L: 'Lyrics', T: 'Text' };
+        const parts = order
+            .filter(k => t.credits[k])
+            .map(k => `${labelMap[k]}: ${t.credits[k]}`);
+        return parts.join(' / ');
+    }
+
     function buildPlaylist() {
         playlistEl.innerHTML = "";
         tracks.forEach((t, i) => {
             const li = document.createElement("li");
             const btn = document.createElement("button");
             btn.type = "button";
+            const creditsStr = formatCredits(t);
+            const subLine = t.details || '';
             btn.innerHTML = `
                 <span class="main">${t.title}</span>
                 <span class="dur">${t.duration ? fmt(t.duration) : ""}</span>
-                <small class="sub">${t.details ? t.details : ""}</small>
+                <small class="sub">${subLine}</small>
+                ${creditsStr ? `<small class="credits">${creditsStr}</small>` : ''}
             `;
             btn.addEventListener("click", () => { load(i); play(); });
             li.appendChild(btn);

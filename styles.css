@@ -395,6 +395,21 @@ p {
     opacity: 0.9;
 }
 
+.player__credits {
+    font-size: 0.75rem;
+    opacity: 0.75;
+    margin-top: 2px;
+    letter-spacing: .5px;
+    display: block;
+}
+
+.playlist .credits {
+    display: block;
+    font-size: 0.65rem;
+    opacity: 0.75;
+    margin-top: 2px;
+}
+
 /* Controls */
 .player__controls {
     display: flex;

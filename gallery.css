@@ -38,7 +38,7 @@
     background: #000;
     cursor: pointer;
     aspect-ratio: 1 / 1;
-    border-radius: 6px;
+    border-radius: 4px;
     overflow: hidden;
     border: none;
     /* Remove default button border causing grey edges */

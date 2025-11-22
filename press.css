@@ -42,6 +42,8 @@
     /* IE/Edge */
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
+    align-items: flex-start;
+    /* allow each card height to hug its own content */
 }
 
 .press-articles::-webkit-scrollbar {

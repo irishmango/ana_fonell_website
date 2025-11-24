@@ -5,9 +5,9 @@
     --form-focus-border: rgba(255, 255, 255, 0.85);
     --form-focus-ring: rgba(255, 255, 255, 0.35);
     /* Primary brand color tokens */
-    --color-primary: rgb(180, 70, 60);
+    --color-primary: rgb(171, 41, 30);
     /* deep brand red */
-    --color-primary-alt: rgb(130, 50, 43);
+    --color-primary-alt: rgba(136, 19, 8, 0.873);
     /* alternate red variant */
     /* Dynamic nav hover color; JS updates this based on underlying section */
     --nav-hover-color: var(--color-primary);

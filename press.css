@@ -1,6 +1,6 @@
 /* Press Section Styles (refactored to use pagination dots instead of arrows) */
 .press {
-    background-color: var(--color-primary-alt);
+    background-color: var(--color-primary);
     color: #fff;
     display: flex;
     flex-direction: column;

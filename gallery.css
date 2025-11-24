@@ -1,6 +1,6 @@
 /* Gallery & Lightbox styles extracted from styles.css */
 .gallery {
-    background-color: var(--color-primary);
+    background-color: var(--color-primary-alt);
     color: #fff;
     display: flex;
     flex-direction: column;

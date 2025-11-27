@@ -126,6 +126,10 @@
         flex-basis: auto;
     }
 
+    .bio-quote {
+        text-align: center;
+    }
+
     /* Contact */
     .contact {
         justify-content: center;

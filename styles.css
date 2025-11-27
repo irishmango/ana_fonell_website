@@ -340,7 +340,7 @@ p {
 .music-quote {
     width: min(920px, 100%);
     margin: 8px auto 42px;
-    font-style: italic;
+    font-style: normal;
     font-size: 0.9rem;
     line-height: 1.5;
     color: #fff;
@@ -683,7 +683,7 @@ br.mobile-br {
 .bio-quote {
     width: 100%;
     margin: 84px auto 16px;
-    font-style: italic;
+    font-style: normal;
     font-size: 0.9rem;
     line-height: 1.5;
     color: #fff;

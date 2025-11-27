@@ -83,8 +83,8 @@
 }
 
 .press-text {
-    /* font-size: .9rem;
-    line-height: 1.4; */
+    font-size: .9rem;
+    /* line-height: 1.4; */
     white-space: pre-line;
     font-family: var(--font-heading);
 }

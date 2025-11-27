@@ -1,45 +1,35 @@
-// Music-related JS: audio player + albums carousel
+// Music-related JS: audio player (tracks only)
 
 // =========================
-// Data loading (albums + tracks)
+// Data loading (tracks only)
 // =========================
-let albums = [];
 let tracks = [];
-let currentAlbumIndex = 0;
 
 async function loadMusicData() {
     try {
         const resp = await fetch('data/music.json', { cache: 'no-cache' });
         if (resp.ok) {
             const json = await resp.json();
-            if (Array.isArray(json.albums)) albums = json.albums;
+            if (Array.isArray(json.tracks)) {
+                tracks = json.tracks.map(t => ({ ...t, duration: null }));
+            }
         }
     } catch { }
 
-    if (!albums.length) {
-        // Fallback: default Tango album using current hardcoded tracks
-        albums = [
-            {
-                id: 'tango',
-                title: 'Tango',
-                cover: 'assets/img/ana_shoes.jpg',
-                year: 2025,
-                tracks: [
-                    { title: 'Los Mareados', artist: 'Ana Fonell', details: 'mit Quique Sinesi (Gitarre) • 2025', year: 2025, src: 'assets/audio/los_mareados.mp3', cover: 'assets/img/ana_shoes.jpg' },
-                    { title: 'Caserón de Tejas', artist: 'Ana Fonell', details: 'mit Quique Sinesi (Gitarre) • 2025', year: 2025, src: 'assets/audio/caseron_de_tejas.mp3', cover: 'assets/img/ana_shoes.jpg' },
-                    { title: 'Negra Maria', artist: 'Ana Fonell', details: 'mit Pablo Woizinski (Piano) und César Nigro (Gitarre) • 2006', year: 2006, src: 'assets/audio/negra_maria.mp3', cover: 'assets/img/ana_shoes.jpg' },
-                    { title: 'Nostalgias', artist: 'Ana Fonell', details: 'mit Quique Sinesi (Gitarre) • 2004', year: 2004, src: 'assets/audio/nostalgias_live.mp3', cover: 'assets/img/ana_shoes.jpg' },
-                    { title: 'Che Bandoneón', artist: 'Ana Fonell', details: 'mit Fernando Maguna (Piano) und Diego Trosman (Gitarre) • 2002', year: 2002, src: 'assets/audio/che_bandoneon_live.mp3', cover: 'assets/img/ana_shoes.jpg' },
-                    { title: 'Vamos Nina', artist: 'Ana Fonell', details: 'mit Corinna Söller (Klavier) und Katja Kulesza (Violine) • 2002', year: 2002, src: 'assets/audio/vamos_nina.mp3', cover: 'assets/img/ana_shoes.jpg' },
-                    { title: 'Chiquilín de Bachín', artist: 'Ana Fonell', details: 'mit Gustavo Battistessa (Bandoneon) und Marcelo Iglesias (Piano) • 1998', year: 1998, src: 'assets/audio/chiquilín_de_bachin.mp3', cover: 'assets/img/ana_shoes.jpg' },
-                    { title: 'El Choclo', artist: 'Ana Fonell', details: 'mit Coco Nelegatti (Gitarre) • 1998', year: 1998, src: 'assets/audio/el_choclo.mp3', cover: 'assets/img/ana_shoes.jpg' }
-                ]
-            }
+    if (!tracks.length) {
+        // Fallback: default tracks
+        tracks = [
+            { title: 'Los Mareados', artist: 'Ana Fonell', details: 'mit Quique Sinesi (Gitarre) • 2025', year: 2025, src: 'assets/audio/los_mareados.mp3', cover: 'assets/img/ana_shoes.jpg', duration: null },
+            { title: 'Caserón de Tejas', artist: 'Ana Fonell', details: 'mit Quique Sinesi (Gitarre) • 2025', year: 2025, src: 'assets/audio/caseron_de_tejas.mp3', cover: 'assets/img/ana_shoes.jpg', duration: null },
+            { title: 'Negra Maria', artist: 'Ana Fonell', details: 'mit Pablo Woizinski (Piano) und César Nigro (Gitarre) • 2006', year: 2006, src: 'assets/audio/negra_maria.mp3', cover: 'assets/img/ana_shoes.jpg', duration: null },
+            { title: 'Nostalgias', artist: 'Ana Fonell', details: 'mit Quique Sinesi (Gitarre) • 2004', year: 2004, src: 'assets/audio/nostalgias_live.mp3', cover: 'assets/img/ana_shoes.jpg', duration: null },
+            { title: 'Che Bandoneón', artist: 'Ana Fonell', details: 'mit Fernando Maguna (Piano) und Diego Trosman (Gitarre) • 2002', year: 2002, src: 'assets/audio/che_bandoneon_live.mp3', cover: 'assets/img/ana_shoes.jpg', duration: null },
+            { title: 'Vamos Nina', artist: 'Ana Fonell', details: 'mit Corinna Söller (Klavier) und Katja Kulesza (Violine) • 2002', year: 2002, src: 'assets/audio/vamos_nina.mp3', cover: 'assets/img/ana_shoes.jpg', duration: null },
+            { title: 'Chiquilín de Bachín', artist: 'Ana Fonell', details: 'mit Gustavo Battistessa (Bandoneon) und Marcelo Iglesias (Piano) • 1998', year: 1998, src: 'assets/audio/chiquilín_de_bachin.mp3', cover: 'assets/img/ana_shoes.jpg', duration: null },
+            { title: 'El Choclo', artist: 'Ana Fonell', details: 'mit Coco Nelegatti (Gitarre) • 1998', year: 1998, src: 'assets/audio/el_choclo.mp3', cover: 'assets/img/ana_shoes.jpg', duration: null }
         ];
     }
 
-    currentAlbumIndex = 0;
-    tracks = (albums[0] && Array.isArray(albums[0].tracks)) ? albums[0].tracks.map(t => ({ ...t, duration: null })) : [];
     try { document.dispatchEvent(new CustomEvent('music:update-tracks')); } catch { }
     try { document.dispatchEvent(new CustomEvent('music:data-ready')); } catch { }
 }
@@ -198,173 +188,5 @@ async function loadMusicData() {
     }
 })();
 
-// =========================
-// Albums carousel (with placeholder)
-// =========================
-(function initAlbumsCarousel() {
-    const viewport = document.querySelector('.albums__viewport');
-    const track = document.querySelector('.albums__track');
-    const prevBtn = document.querySelector('.albums__arrow--prev');
-    const nextBtn = document.querySelector('.albums__arrow--next');
-    if (!viewport || !track || !prevBtn || !nextBtn) return;
-
-    // Uses global albums loaded from data; if empty, a placeholder will be shown
-
-    let perPage = calcPerPage();
-    let pages = [];
-    let pageIndex = 0;
-
-    function calcPerPage() {
-        const w = window.innerWidth;
-        if (w <= 700) return 1;
-        if (w <= 1024) return 2;
-        return 4;
-    }
-
-    function chunk(arr, size) {
-        const out = [];
-        for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
-        return out;
-    }
-
-    function render() {
-        track.innerHTML = '';
-        const data = pages;
-        data.forEach(group => {
-            const page = document.createElement('div');
-            page.className = 'albums__page';
-            group.forEach(a => {
-                const card = document.createElement('article');
-                if (a.placeholder) {
-                    card.className = 'album-card album-card--empty';
-                    const msg = (typeof I18N?.t === 'function') ? I18N.t('albums.placeholder', 'More music coming soon') : 'More music coming soon';
-                    card.innerHTML = `<p class="album-card__emptyMsg">${msg}</p>`;
-                } else {
-                    card.className = 'album-card';
-                    const meta = (a.meta != null ? String(a.meta) : (a.year != null ? String(a.year) : ''));
-                    card.innerHTML = `
-                        <img class="album-card__cover" src="${a.cover}" alt="${a.title}">
-                        <div class="album-card__body">
-                            <h3 class="album-card__title">${a.title}</h3>
-                            ${meta ? `<p class="album-card__meta">${meta}</p>` : ''}
-                        </div>
-                    `;
-                    // Album selection: update global tracks and notify player
-                    card.addEventListener('click', () => {
-                        const idx = albums.findIndex(x => x.id === a.id);
-                        if (idx >= 0) currentAlbumIndex = idx;
-                        tracks = Array.isArray(a.tracks) ? a.tracks.map(t => ({ ...t, duration: null })) : [];
-                        try { document.dispatchEvent(new CustomEvent('music:update-tracks')); } catch { }
-                        const player = document.querySelector('.player');
-                        if (player) player.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    });
-                }
-                page.appendChild(card);
-            });
-            track.appendChild(page);
-        });
-        update();
-    }
-
-    function rebuildIfNeeded() {
-        const nextPer = calcPerPage();
-        if (nextPer !== perPage) {
-            perPage = nextPer;
-            pages = chunk(albums, perPage);
-            pageIndex = Math.min(pageIndex, pages.length - 1);
-            render();
-        } else {
-            update();
-        }
-    }
-
-    function update() {
-        const offset = -pageIndex * 100;
-        track.style.transform = `translateX(${offset}%)`;
-        prevBtn.disabled = pageIndex <= 0;
-        nextBtn.disabled = pageIndex >= pages.length - 1;
-        // Hide arrows entirely if there's only one page
-        const single = pages.length <= 1;
-        prevBtn.style.display = single ? 'none' : '';
-        nextBtn.style.display = single ? 'none' : '';
-    }
-
-    function next() { if (pageIndex < pages.length - 1) { pageIndex++; update(); } }
-    function prev() { if (pageIndex > 0) { pageIndex--; update(); } }
-
-    // Pointer/touch swipe
-    let startX = 0;
-    let dragging = false;
-    let lastDelta = 0;
-
-    function onDown(e) {
-        dragging = true;
-        startX = (e.touches ? e.touches[0].clientX : e.clientX);
-        lastDelta = 0;
-        track.style.transition = 'none';
-    }
-    function onMove(e) {
-        if (!dragging) return;
-        const x = (e.touches ? e.touches[0].clientX : e.clientX);
-        const dx = x - startX;
-        lastDelta = dx;
-        const width = viewport.clientWidth || 1;
-        const pct = (dx / width) * 100;
-        const offset = (-pageIndex * 100) + pct;
-        track.style.transform = `translateX(${offset}%)`;
-    }
-    function onUp() {
-        if (!dragging) return;
-        dragging = false;
-        track.style.transition = '';
-        const width = viewport.clientWidth || 1;
-        const threshold = Math.max(40, width * 0.08); // px threshold
-        if (lastDelta > threshold) prev();
-        else if (lastDelta < -threshold) next();
-        else update();
-    }
-
-    viewport.addEventListener('mousedown', onDown);
-    window.addEventListener('mousemove', onMove);
-    window.addEventListener('mouseup', onUp);
-    viewport.addEventListener('touchstart', onDown, { passive: true });
-    window.addEventListener('touchmove', onMove, { passive: true });
-    window.addEventListener('touchend', onUp);
-
-    prevBtn.addEventListener('click', prev);
-    nextBtn.addEventListener('click', next);
-    window.addEventListener('resize', rebuildIfNeeded);
-
-    function buildPages() {
-        // Use only real albums; no placeholder card
-        const source = Array.isArray(albums) ? albums.slice() : [];
-        pages = chunk(source, perPage);
-        pageIndex = Math.min(pageIndex, pages.length - 1);
-    }
-
-    // Initial build (renders real albums only; no placeholder)
-    buildPages();
-    render();
-
-    // i18n: set aria-labels for arrows and keep them updated on language change
-    function setArrowLabels() {
-        try {
-            const prevLabel = (typeof I18N?.t === 'function') ? I18N.t('albums.prev', 'Previous albums') : 'Previous albums';
-            const nextLabel = (typeof I18N?.t === 'function') ? I18N.t('albums.next', 'Next albums') : 'Next albums';
-            prevBtn.setAttribute('aria-label', prevLabel);
-            nextBtn.setAttribute('aria-label', nextLabel);
-        } catch { }
-    }
-    setArrowLabels();
-    document.addEventListener('i18n:change', setArrowLabels);
-
-    // Rebuild when data is ready
-    document.addEventListener('music:data-ready', () => {
-        pageIndex = 0;
-        buildPages();
-        render();
-    });
-
-    // Kick off data loading
-    loadMusicData();
-})();
+// Kick off music data loading (tracks only)
+loadMusicData();

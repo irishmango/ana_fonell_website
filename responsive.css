@@ -192,38 +192,7 @@
         text-align: center;
     }
 
-    /* Albums carousel: keep carousel but shrink card width and center it */
-    .albums__page {
-        justify-items: center;
-    }
-
-    .album-card,
-    .album-card--empty {
-        width: 70%;
-        max-width: 260px;
-        margin: 0 auto;
-    }
-
-    .album-card__cover {
-        aspect-ratio: 1 / 1;
-    }
-
-    .album-card__title {
-        font-size: 0.95rem;
-    }
-
-    .album-card__meta {
-        font-size: 0.8rem;
-    }
-
-    .album-card--empty {
-        min-height: 0;
-        padding: 28px 12px;
-    }
-
-    .album-card__emptyMsg {
-        font-size: 0.9rem;
-    }
+    /* Removed albums carousel responsive rules */
 
     /* Allow footer nav links to wrap to new lines on small screens */
     .footer-nav {

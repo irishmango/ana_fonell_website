@@ -58,6 +58,17 @@
     transform: scale(1.05);
 }
 
+.gallery-quote {
+    width: 100%;
+    margin: 84px 0px 42px;
+    font-style: italic;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #fff;
+    text-align: right;
+    opacity: 0.9;
+}
+
 /* Lightbox styles */
 .lightbox {
     position: fixed;

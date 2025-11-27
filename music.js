@@ -336,14 +336,13 @@ async function loadMusicData() {
     window.addEventListener('resize', rebuildIfNeeded);
 
     function buildPages() {
-        // Always append a placeholder card after real albums
+        // Use only real albums; no placeholder card
         const source = Array.isArray(albums) ? albums.slice() : [];
-        source.push({ placeholder: true });
         pages = chunk(source, perPage);
         pageIndex = Math.min(pageIndex, pages.length - 1);
     }
 
-    // Initial build (will show Tango + placeholder when data present, otherwise placeholder only)
+    // Initial build (renders real albums only; no placeholder)
     buildPages();
     render();
 

@@ -336,6 +336,18 @@ p {
     position: static;
 }
 
+/* Review pull-quote under Music heading */
+.music-quote {
+    width: min(920px, 100%);
+    margin: 8px auto 42px;
+    font-style: italic;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #fff;
+    text-align: center;
+    opacity: 0.9;
+}
+
 /* Player shell */
 .player {
     width: min(920px, 100%);
@@ -662,15 +674,14 @@ p {
 }
 
 .bio-quote {
-    /* Keep quote aligned with the bio content container */
-    width: min(900px, 100%);
-    margin: 64px auto 0;
+    width: min(920px, 100%);
+    margin: 84px auto 16px;
     font-style: italic;
-    font-size: 0.8rem;
-    /* smaller than body copy */
+    font-size: 0.9rem;
     line-height: 1.5;
     color: #fff;
-    text-align: right;
+    text-align: center;
+    opacity: 0.9;
 }
 
 .bio-content p+p {
@@ -811,7 +822,7 @@ p {
     width: 100%;
     box-sizing: border-box;
     padding: 10px 12px;
-    border-radius: 6px;
+    border-radius: 4px;
     border: 1px solid rgba(255, 255, 255, 0.25);
     background: rgba(0, 0, 0, 0.2);
     color: #fff;
@@ -985,7 +996,7 @@ p {
     background: #0f0f0f;
     color: #fff;
     border: 1px solid rgba(255, 255, 255, 0.18);
-    border-radius: 10px;
+    border-radius: 4px;
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
     padding: 18px 18px 14px;
 }
@@ -1014,7 +1025,7 @@ p {
     background: transparent;
     color: #fff;
     border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 6px;
+    border-radius: 4px;
     width: 32px;
     height: 32px;
     line-height: 28px;
@@ -1144,7 +1155,7 @@ p {
 .albums__viewport {
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 6px;
+    border-radius: 4px;
     background: rgba(0, 0, 0, 0.15);
 }
 
@@ -1171,7 +1182,7 @@ p {
     grid-template-rows: auto auto auto;
     gap: 6px;
     border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 6px;
+    border-radius: 4px;
     background: rgba(0, 0, 0, 0.08);
     overflow: hidden;
 }

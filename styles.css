@@ -348,6 +348,17 @@ p {
     opacity: 0.9;
 }
 
+/* Mobile-only line break toggles */
+br.mobile-br {
+    display: none;
+}
+
+@media (max-width: 700px) {
+    br.mobile-br {
+        display: inline;
+    }
+}
+
 /* Player shell */
 .player {
     width: min(920px, 100%);

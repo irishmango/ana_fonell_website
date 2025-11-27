@@ -681,13 +681,13 @@ br.mobile-br {
 }
 
 .bio-quote {
-    width: 100%;
-    margin: 84px auto 16px;
+    width: min(900px, 100%);
+    margin: 0 auto 28px;
     font-style: normal;
     font-size: 0.9rem;
     line-height: 1.5;
     color: #fff;
-    text-align: center;
+    text-align: left;
     opacity: 0.9;
 }
 
@@ -708,6 +708,10 @@ br.mobile-br {
 
     .bio-content p {
         max-width: 65ch;
+    }
+
+    .bio-quote {
+        margin-bottom: 20px;
     }
 }
 

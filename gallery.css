@@ -59,13 +59,13 @@
 }
 
 .gallery-quote {
-    width: 100%;
-    margin: 84px 0px 42px;
+    width: min(1000px, 100%);
+    margin: 0 auto 28px;
     font-style: normal;
     font-size: 0.9rem;
     line-height: 1.5;
     color: #fff;
-    text-align: right;
+    text-align: left;
     opacity: 0.9;
 }
 
@@ -149,5 +149,9 @@
     .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 10px;
+    }
+
+    .gallery-quote {
+        margin: 0 0 20px;
     }
 }

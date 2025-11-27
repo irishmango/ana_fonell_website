@@ -62,7 +62,7 @@
     width: min(1000px, 100%);
     margin: 0 auto 28px;
     font-style: normal;
-    font-size: 0.9rem;
+    /* font-size: 0.9rem; */
     line-height: 1.5;
     color: #fff;
     text-align: left;

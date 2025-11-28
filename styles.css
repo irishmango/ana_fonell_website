@@ -1312,7 +1312,7 @@ html {
    Add the class 'debug' to <body> to enable a more subtle version.
 ============================== */
 /* Always-on global outline for immediate layout debugging */
-* {
+/* * {
     outline: 1px solid rgba(0, 160, 255, 0.35);
     outline-offset: -1px;
 }
@@ -1323,4 +1323,4 @@ body.debug * {
 
 body.debug *:hover {
     outline-color: rgba(255, 255, 0, 0.7);
-}
+} */

@@ -804,7 +804,9 @@ br.mobile-br {
     }
 
     .player__now {
-        grid-template-columns: 48px 1fr;
+        grid-template-columns: 1fr;
+        justify-items: center;
+        align-items: start;
     }
 
     .player__cover {

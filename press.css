@@ -199,8 +199,40 @@
         /* increase usable width by reducing side padding */
     }
 
+    .press-wrapper {
+        padding: 0 12px;
+    }
+
     .press-articles {
+        gap: 12px;
+        padding: 4px 0 8px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+    }
+
+    .press-card {
+        flex: 0 0 100%;
+        width: 100%;
+        max-width: 520px;
+        margin: 0 auto;
+        scroll-snap-align: center;
+    }
+
+    /* Reposition controls below cards on mobile */
+    .press-controls {
+        position: static;
+        width: 100%;
+        margin: 16px 0 0;
+        display: flex;
+        justify-content: center;
         gap: 20px;
+        transform: none;
+        pointer-events: auto;
+    }
+
+    .press-arrow {
+        width: 40px;
+        height: 40px;
     }
 
     .press-header {

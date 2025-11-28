@@ -90,7 +90,11 @@
     }
 
     .player__now {
-        grid-template-columns: 48px 1fr;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 8px;
     }
 
     .player__cover {

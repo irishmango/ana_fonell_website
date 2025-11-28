@@ -67,6 +67,7 @@
     color: #fff;
     text-align: left;
     opacity: 0.9;
+    flex-direction: row;
 }
 
 /* Lightbox styles */
@@ -151,7 +152,15 @@
         gap: 10px;
     }
 
+    /* Unified mobile spacing: 8px between h1 and quote, 20px after quote */
+    .gallery h1 {
+        margin: 0 0 8px;
+    }
+
     .gallery-quote {
         margin: 0 0 20px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 }

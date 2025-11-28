@@ -329,22 +329,24 @@ p {
 }
 
 .music h1 {
-    margin: 0 0 24px 0;
+    width: min(920px, 100%);
+    margin: 0 auto 12px;
     font-size: clamp(2rem, 3vw + 0.32rem, 2.8rem);
     line-height: 1.1;
     color: #fff;
     position: static;
+    text-align: left;
 }
 
 /* Review pull-quote under Music heading */
 .music-quote {
     width: min(920px, 100%);
-    margin: 8px auto 42px;
+    margin: 4px auto 30px;
     font-style: normal;
     /* font-size: 0.9rem; */
     line-height: 1.5;
     color: #fff;
-    text-align: center;
+    text-align: left;
     opacity: 0.9;
 }
 
@@ -378,9 +380,11 @@ br.mobile-br {
 /* Now playing row */
 .player__now {
     display: grid;
-    grid-template-columns: 64px 1fr;
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
     gap: 12px;
-    align-items: center;
+    align-items: start;
+    justify-items: center;
     margin-bottom: 8px;
 }
 
@@ -391,6 +395,7 @@ br.mobile-br {
     border-radius: 4px;
     background: rgba(255, 255, 255, 0.08);
     object-position: 80% 0%;
+    margin-bottom: 4px;
 }
 
 .player__title {
@@ -398,6 +403,7 @@ br.mobile-br {
     font-size: 1.35rem;
     font-weight: 700;
     line-height: 1.2;
+    text-align: center;
 }
 
 /* Language switch inside drawer (inline row) */
@@ -416,6 +422,7 @@ br.mobile-br {
 .player__artist {
     font-size: 0.95rem;
     opacity: 0.9;
+    text-align: center;
 }
 
 .player__credits {
@@ -424,6 +431,7 @@ br.mobile-br {
     margin-top: 2px;
     letter-spacing: .5px;
     display: block;
+    text-align: center;
 }
 
 .playlist .credits {
@@ -439,6 +447,7 @@ br.mobile-br {
     align-items: center;
     gap: 8px;
     margin: 8px 0;
+    justify-content: center;
 }
 
 .btn {
@@ -624,6 +633,8 @@ br.mobile-br {
     display: flex;
     flex-direction: column;
     align-items: center;
+    --bio-media-max: 420px;
+    --bio-media-width: clamp(220px, 32vw, var(--bio-media-max));
 }
 
 .bio h1 {
@@ -649,21 +660,19 @@ br.mobile-br {
 
 /* Bio media enforces a consistent aspect ratio while keeping image cover-cropped */
 .bio-media {
-    flex: 0 1 clamp(220px, 32vw, 420px);
-    min-width: 0;
-    aspect-ratio: 3 / 4;
-    /* portrait box ratio */
+    flex: 0 0 var(--bio-media-width);
+    inline-size: var(--bio-media-width);
+    width: var(--bio-media-width);
+    max-width: var(--bio-media-max);
     border-radius: 4px;
-    overflow: hidden;
-    /* clip image corners and overflow */
+    box-sizing: border-box;
 }
 
 .bio-media img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
     display: block;
-    object-position: 100% 80%;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
 }
 
 .bio-text {
@@ -678,6 +687,31 @@ br.mobile-br {
     margin: 0;
     color: #fff;
     overflow-wrap: anywhere;
+}
+
+.bio-quote-row {
+    width: min(900px, 100%);
+    margin-inline: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 12px;
+}
+
+.bio-quote-spacer {
+    flex: 0 0 var(--bio-media-width);
+    inline-size: var(--bio-media-width);
+    width: var(--bio-media-width);
+    max-width: var(--bio-media-max);
+    box-sizing: border-box;
+}
+
+.bio-quote-row .bio-quote {
+    flex: 1 1 auto;
+    min-width: 0;
+    margin: 0;
+    text-align: left;
 }
 
 .bio-quote {
@@ -704,14 +738,55 @@ br.mobile-br {
     .bio-media {
         flex-basis: auto;
         width: 100%;
+        min-width: 0;
+        order: 0;
+        margin-bottom: 16px;
+    }
+
+    .bio-text {
+        order: 1;
     }
 
     .bio-content p {
         max-width: 65ch;
     }
 
+    .bio-quote-row {
+        width: 100%;
+        gap: 0;
+        flex-direction: column;
+    }
+
+    .bio-quote-spacer {
+        display: none;
+    }
+
     .bio-quote {
-        margin-bottom: 20px;
+        margin: 0 0 20px 0;
+        text-align: left;
+    }
+
+    /* Unified mobile heading->quote spacing (8px gap, 20px after quote) */
+    .music h1 {
+        margin: 0 auto 8px;
+    }
+
+    .music-quote {
+        margin: 0 0 20px;
+        text-align: left;
+    }
+
+    .bio h1 {
+        margin: 0 0 8px;
+    }
+
+    .gallery h1 {
+        margin: 0 0 8px;
+    }
+
+    .gallery-quote {
+        margin: 0 0 20px;
+        text-align: left;
     }
 }
 
@@ -1237,7 +1312,7 @@ html {
    Add the class 'debug' to <body> to enable a more subtle version.
 ============================== */
 /* Always-on global outline for immediate layout debugging */
-/* * {
+* {
     outline: 1px solid rgba(0, 160, 255, 0.35);
     outline-offset: -1px;
 }
@@ -1248,4 +1323,4 @@ body.debug * {
 
 body.debug *:hover {
     outline-color: rgba(255, 255, 0, 0.7);
-} */
+}

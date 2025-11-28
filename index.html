@@ -107,7 +107,7 @@
 
         <section id="music" class="music">
             <h1 data-i18n="nav.music"></h1>
-            <p class="music-quote"><span data-i18n="music.quote"></span><br class="mobile-br"> - <span
+            <p class="music-quote"><span data-i18n="music.quote"></span><br> - <span
                     data-i18n="music.quoteSource"></span>
             </p>
 
@@ -151,9 +151,11 @@
         <section id="bio" class="bio">
             <div class="bio-wrapper">
                 <h1 data-i18n="bio.title"></h1>
-                <p class="bio-quote"><span data-i18n="bio.quote"></span><br class="mobile-br"> - <span
-                        data-i18n="bio.quoteSource"></span>
-                </p>
+                <div class="bio-quote-row">
+                    <div class="bio-quote-spacer" aria-hidden="true"></div>
+                    <p class="bio-quote"><span data-i18n="bio.quote"></span> - <span data-i18n="bio.quoteSource"></span>
+                    </p>
+                </div>
                 <div class="bio-content">
                     <div class="bio-media">
                         <img src="assets/img/bio_img_flipped.webp" alt="Ana Fonell" loading="lazy">
@@ -163,6 +165,7 @@
                         <p data-i18n="bio.p2"></p>
                         <p data-i18n="bio.p3"></p>
                         <p data-i18n="bio.p4"></p>
+                        <p data-i18n="bio.p5"></p>
                     </div>
                 </div>
 
@@ -173,7 +176,7 @@
         <section id="gallery" class="gallery" aria-labelledby="gallery-heading">
             <div class="gallery-wrapper">
                 <h1 id="gallery-heading" data-i18n="gallery.title"></h1>
-                <p class="gallery-quote"><span data-i18n="gallery.quote"></span><br class="mobile-br"> - <span
+                <p class="gallery-quote"><span data-i18n="gallery.quote"></span> - <span
                         data-i18n="gallery.quoteSource"></span>
                 </p>
                 <div class="gallery-grid" aria-label="Gallery of photos">
@@ -217,7 +220,13 @@
         <section id="press" class="press">
 
             <div class="press-wrapper">
-                <h1 data-i18n="press.title"></h1>
+                <div class="press-header">
+                    <h1 data-i18n="press.title"></h1>
+                    <p class="press-quote"><span data-i18n="press.quote"></span> - <span
+                            data-i18n="press.quoteSource"></span>
+                    </p>
+                </div>
+
 
                 <div class="press-articles" aria-label="Press articles"></div>
                 <div class="press-controls" aria-hidden="false">

@@ -371,7 +371,7 @@ p {
 .music-quote,
 .bio-quote,
 .gallery-quote {
-    margin: 0;
+    margin: 6px 0 0 0;
     flex: 1 1 auto;
     min-width: 0;
     font-size: var(--quote-size);

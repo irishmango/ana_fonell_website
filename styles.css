@@ -11,6 +11,10 @@
     /* alternate red variant */
     /* Dynamic nav hover color; JS updates this based on underlying section */
     --nav-hover-color: var(--color-primary);
+    /* Unified desktop content width */
+    --section-max: 900px;
+    /* Slightly smaller quote text size */
+    --quote-size: 0.90rem;
 }
 
 body {
@@ -329,8 +333,8 @@ p {
 }
 
 .music h1 {
-    width: min(920px, 100%);
-    margin: 0 auto 12px;
+    width: auto;
+    margin: 0;
     font-size: clamp(2rem, 3vw + 0.32rem, 2.8rem);
     line-height: 1.1;
     color: #fff;
@@ -338,16 +342,45 @@ p {
     text-align: left;
 }
 
-/* Review pull-quote under Music heading */
-.music-quote {
-    width: min(920px, 100%);
-    margin: 4px auto 30px;
+/* Section headers: inline on desktop, stacked on mobile */
+.music-wrapper {
+    width: min(var(--section-max), 100%);
+    margin-inline: auto;
+}
+
+.music-header,
+.music-header,
+.bio-header,
+.gallery-header {
+    width: 100%;
+    margin: 0 auto 20px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    column-gap: 32px;
+    row-gap: 0;
+}
+
+.music-header h1,
+.bio-header h1,
+.gallery-header h1 {
+    margin: 0;
+    flex: 0 0 auto;
+}
+
+.music-quote,
+.bio-quote,
+.gallery-quote {
+    margin: 0;
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: var(--quote-size);
     font-style: normal;
-    /* font-size: 0.9rem; */
     line-height: 1.5;
     color: #fff;
     text-align: left;
     opacity: 0.9;
+    grid-column: 2;
 }
 
 /* Mobile-only line break toggles */
@@ -363,7 +396,7 @@ br.mobile-br {
 
 /* Player shell */
 .player {
-    width: min(920px, 100%);
+    width: 100%;
     background: rgba(0, 0, 0, 0.25);
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 4px;
@@ -569,7 +602,7 @@ br.mobile-br {
     margin: 16px 0 0;
     padding: 0;
     list-style: none;
-    width: min(920px, 100%);
+    width: 100%;
 }
 
 .playlist li+li {
@@ -627,9 +660,12 @@ br.mobile-br {
     width: 100%;
     padding: 80px 64px 124px;
     box-sizing: border-box;
+    align-items: center;
 }
 
 .bio-wrapper {
+    width: min(var(--section-max), 100%);
+    margin-inline: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -638,12 +674,7 @@ br.mobile-br {
 }
 
 .bio h1 {
-    margin-top: 0;
-    /* Align heading with bio content container */
-    width: min(900px, 100%);
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 24px;
+    margin: 0;
     font-size: clamp(2rem, 3vw + 0.32rem, 2.8rem);
     line-height: 1.1;
     color: #fff;
@@ -654,8 +685,7 @@ br.mobile-br {
     flex-direction: row;
     justify-content: center;
     gap: 24px;
-    width: min(900px, 100%);
-    margin-inline: auto;
+    width: 100%;
 }
 
 /* Bio media enforces a consistent aspect ratio while keeping image cover-cropped */
@@ -689,41 +719,7 @@ br.mobile-br {
     overflow-wrap: anywhere;
 }
 
-.bio-quote-row {
-    width: min(900px, 100%);
-    margin-inline: auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 24px;
-    margin-bottom: 12px;
-}
-
-.bio-quote-spacer {
-    flex: 0 0 var(--bio-media-width);
-    inline-size: var(--bio-media-width);
-    width: var(--bio-media-width);
-    max-width: var(--bio-media-max);
-    box-sizing: border-box;
-}
-
-.bio-quote-row .bio-quote {
-    flex: 1 1 auto;
-    min-width: 0;
-    margin: 0;
-    text-align: left;
-}
-
-.bio-quote {
-    width: min(900px, 100%);
-    margin: 0 auto 28px;
-    font-style: normal;
-    /* font-size: 0.9rem; */
-    line-height: 1.5;
-    color: #fff;
-    text-align: right;
-    opacity: 0.9;
-}
+/* remove old bio quote row styles (now using .bio-header) */
 
 .bio-content p+p {
     margin-top: 1rem;
@@ -751,43 +747,24 @@ br.mobile-br {
         max-width: 65ch;
     }
 
-    .bio-quote-row {
+    .music-header,
+    .bio-header,
+    .gallery-header {
         width: 100%;
-        gap: 0;
-        flex-direction: column;
+        grid-template-columns: 1fr;
+        align-items: start;
+        row-gap: 8px;
+        margin-bottom: 20px;
     }
 
-    .bio-quote-spacer {
-        display: none;
-    }
-
-    .bio-quote {
-        margin: 0 0 20px 0;
-        text-align: left;
+    .music-quote,
+    .bio-quote,
+    .gallery-quote {
+        grid-column: 1;
     }
 
     /* Unified mobile heading->quote spacing (8px gap, 20px after quote) */
-    .music h1 {
-        margin: 0 auto 8px;
-    }
-
-    .music-quote {
-        margin: 0 0 20px;
-        text-align: left;
-    }
-
-    .bio h1 {
-        margin: 0 0 8px;
-    }
-
-    .gallery h1 {
-        margin: 0 0 8px;
-    }
-
-    .gallery-quote {
-        margin: 0 0 20px;
-        text-align: left;
-    }
+    /* unified mobile spacing handled by header containers */
 }
 
 
@@ -923,6 +900,7 @@ br.mobile-br {
     border-color: rgba(200, 80, 80, 0.8);
     box-shadow: 0 0 0 2px rgba(200, 80, 80, 0.35);
 }
+
 
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
@@ -1313,10 +1291,14 @@ html {
    Remove or comment out when not needed.
    Add the class 'debug' to <body> to enable a more subtle version.
 ============================== */
-/* Always-on global outline for immediate layout debugging */
-/* * {
+/* Debug outlines (disabled by default). Add `debug` on <body> to enable */
+body.debug * {
     outline: 1px solid rgba(0, 160, 255, 0.35);
     outline-offset: -1px;
+}
+
+body.debug *:hover {
+    outline-color: rgba(255, 255, 0, 0.6);
 }
 
 body.debug * {
@@ -1325,4 +1307,4 @@ body.debug * {
 
 body.debug *:hover {
     outline-color: rgba(255, 255, 0, 0.7);
-} */
+}

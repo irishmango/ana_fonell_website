@@ -123,8 +123,8 @@
 .press-controls {
     position: absolute;
     top: 50%;
-    left: 0;
-    width: 100%;
+    left: -40;
+    width: 110%;
     display: flex;
     justify-content: space-between;
     transform: translateY(-50%);

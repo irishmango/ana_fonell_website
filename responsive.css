@@ -131,7 +131,27 @@
     }
 
     .bio-quote {
-        text-align: left;
+        text-align: center;
+    }
+
+    /* Center section titles and quotes on mobile */
+    .music-header,
+    .bio-header,
+    .gallery-header,
+    .press-header {
+        justify-items: center;
+        text-align: center;
+    }
+
+    .music-header h1,
+    .bio-header h1,
+    .gallery-header h1,
+    .press-header h1,
+    .music-quote,
+    .bio-quote,
+    .gallery-quote,
+    .press-quote {
+        text-align: center;
     }
 
     /* Contact */

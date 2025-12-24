@@ -21,6 +21,7 @@
 /* Header layout: inline on desktop, stacked on mobile */
 .gallery-header {
     width: 100%;
+    margin: 0 auto var(--section-gap, 20px);
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -71,7 +72,7 @@
 }
 
 .gallery-quote {
-    margin: 20px 0 0 0;
+    margin: var(--section-gap, 20px) 0 0 0;
     font-style: italic;
     line-height: 1.5;
     display: block;

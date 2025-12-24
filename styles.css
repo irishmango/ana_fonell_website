@@ -15,6 +15,8 @@
     --section-max: 900px;
     /* Slightly smaller quote text size */
     --quote-size: 0.90rem;
+    /* Equal spacing between title→quote and header→content (desktop) */
+    --section-gap: 24px;
 }
 
 body {
@@ -47,6 +49,12 @@ p {
     gap: 24px;
 }
 
+@media (max-width: 700px) {
+    .wrapper {
+        gap: 0px;
+    }
+
+}
 
 /* Header / Navigation */
 .site-header {
@@ -356,6 +364,7 @@ p {
 .bio-header,
 .gallery-header {
     width: 100%;
+    margin: 0 auto var(--section-gap);
     display: grid;
     grid-template-columns: auto 1fr;
     align-items: center;
@@ -364,7 +373,7 @@ p {
 }
 
 .music-header {
-    margin-bottom: 24px;
+    margin-bottom: 32px;
 }
 
 .music-header h1,
@@ -380,7 +389,7 @@ p {
 .music-quote,
 .bio-quote,
 .gallery-quote {
-    margin: 20px 0 0 0;
+    margin: var(--section-gap) 0 0 0;
     flex: 1 1 auto;
     min-width: 0;
     font-size: var(--quote-size);
@@ -761,11 +770,10 @@ br.mobile-br {
     .music-header,
     .bio-header,
     .gallery-header {
-        width: 100%;
+        margin: 0 auto var(--section-gap);
         grid-template-columns: 1fr;
         align-items: start;
-        row-gap: 8px;
-        margin-bottom: 20px;
+        row-gap: 0;
     }
 
     .music-quote,
@@ -774,8 +782,7 @@ br.mobile-br {
         grid-column: 1;
     }
 
-    /* Unified mobile heading->quote spacing (8px gap, 20px after quote) */
-    /* unified mobile spacing handled by header containers */
+    /* Mobile uses smaller --section-gap; no internal row-gap to keep equality */
 }
 
 
@@ -1216,6 +1223,12 @@ br.mobile-br {
 /* Albums carousel styles removed */
 
 @media (max-width: 800px) {
+
+    /* Smaller rhythm on mobile; keeps title→quote == header→content */
+    :root {
+        --section-gap: 14px;
+    }
+
     .footer-inner {
         grid-template-columns: 1fr;
         justify-items: center;

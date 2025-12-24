@@ -31,8 +31,8 @@
             card.setAttribute('role', 'article');
             card.setAttribute('aria-labelledby', id + '-title');
             card.innerHTML = `
-                <h3 id="${id}-title">${rev.title}</h3>
-                <div class="press-meta">${rev.publication} · ${rev.year}</div>
+                <h3 id="${id}-title">${rev.publication}</h3>
+                <div class="press-meta">${rev.year}</div>
                 <div class="press-text">${escapeHtml(rev.text_1)}\n\n${escapeHtml(rev.text_2 || '')}</div>
             `;
             container.appendChild(card);

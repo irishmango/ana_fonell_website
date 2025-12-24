@@ -43,6 +43,10 @@ p {
     font-family: var(--font-heading);
 }
 
+.wrapper {
+    gap: 24px;
+}
+
 
 /* Header / Navigation */
 .site-header {
@@ -339,7 +343,7 @@ p {
     line-height: 1.1;
     color: #fff;
     position: static;
-    text-align: left;
+    text-align: center;
 }
 
 /* Section headers: inline on desktop, stacked on mobile */
@@ -349,11 +353,9 @@ p {
 }
 
 .music-header,
-.music-header,
 .bio-header,
 .gallery-header {
     width: 100%;
-    margin: 0 auto 20px;
     display: grid;
     grid-template-columns: auto 1fr;
     align-items: center;
@@ -361,26 +363,34 @@ p {
     row-gap: 0;
 }
 
+.music-header {
+    margin-bottom: 24px;
+}
+
 .music-header h1,
 .bio-header h1,
 .gallery-header h1 {
     margin: 0;
     flex: 0 0 auto;
+    /* Center titles across full section width */
+    grid-column: 1 / -1;
+    text-align: center;
 }
 
 .music-quote,
 .bio-quote,
 .gallery-quote {
-    margin: 6px 0 0 0;
+    margin: 20px 0 0 0;
     flex: 1 1 auto;
     min-width: 0;
     font-size: var(--quote-size);
-    font-style: normal;
+    font-style: italic;
     line-height: 1.5;
     color: #fff;
-    text-align: left;
+    text-align: center;
     opacity: 0.9;
-    grid-column: 2;
+    /* Place quotes beneath centered titles on desktop as well */
+    grid-column: 1 / -1;
 }
 
 /* Mobile-only line break toggles */
@@ -678,6 +688,7 @@ br.mobile-br {
     font-size: clamp(2rem, 3vw + 0.32rem, 2.8rem);
     line-height: 1.1;
     color: #fff;
+    text-align: center;
 }
 
 .bio-content {

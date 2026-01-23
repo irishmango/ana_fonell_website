@@ -45,14 +45,25 @@
         return String(str).replace(/[&<>]/g, s => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[s]));
     }
 
-    // Try language file first, fallback to German
-    fetchJson(dataFile)
-        .catch(() => fetchJson(fallbackFile))
-        .then(data => render(data.reviews))
-        .catch(err => {
-            console.error('Failed to load press reviews', err);
-            container.innerHTML = '<p style="opacity:.8">Press reviews unavailable.</p>';
-        });
+    function loadPressData(language) {
+        const file = `/data/press-${language}.json`;
+        fetchJson(file)
+            .catch(() => fetchJson(fallbackFile))
+            .then(data => render(data.reviews))
+            .catch(err => {
+                console.error('Failed to load press reviews', err);
+                container.innerHTML = '<p style="opacity:.8">Press reviews unavailable.</p>';
+            });
+    }
+
+    // Initial load
+    loadPressData(lang);
+
+    // Listen for language changes from I18N
+    document.addEventListener('i18n:change', (e) => {
+        const newLang = e.detail?.lang;
+        if (newLang) loadPressData(newLang);
+    });
 
     // Optional: drag-to-scroll for desktop + touch fallback
     let isDown = false; let startX = 0; let scrollLeft = 0;

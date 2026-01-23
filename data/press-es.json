@@ -1,0 +1,48 @@
+{
+    "reviews": [
+        {
+            "title": "Tango Canción",
+            "publication": "Heidenheimer Zeitung",
+            "year": 2004,
+            "text_1": "... Su cabello es tan rojo como el fuego subterráneo de su música. Con textura, a veces ahumada y velada, luego otra vez áspera y clara, pero nunca patética es la voz de la cantante nacida en Berlín: Ana Fonell canta el tango, en español por supuesto, y parece sentir la historia en cada una de las canciones.",
+            "text_2": "Una y otra vez intercala pasajes hablados en alemán, construyendo puentes hacia el público y manteniéndolo en vilo. Su firma artística es distintiva. Ana Fonell utiliza sus recursos teatrales con moderación pero con gran efecto. Sin grandes gestos, coquetería ni aires de femme fatale, controla su voz, oscilando entre una elegancia austera, un ingenio sardónico y una pasión indulgente."
+        },
+        {
+            "title": "Ana Fonell singt Lieder von Astor Piazzolla",
+            "publication": "Tango Danza",
+            "year": 2004,
+            "text_1": "...Ana Fonell domina con su voz cálida y profunda un rango sin pretensiones de poder narrativo melódico que seguramente no tiene igual en Alemania. No necesita temer la comparación con cantantes argentinas, aunque su estilo de interpretación sea muy diferente... A veces interpreta con ironía ingeniosa, tempo y humor (El Titere), luego seduce, susurra, ríe, llora las melodías (Chiquilín de Bachín). Con pequeñas historias cautivadoras sobre los autores e historia de los tangos, breves fragmentos traducidos de los maravillosos poemas de Ferrer y Neruda que forman la base de las canciones, y pasajes de texto en alemán sorprendentemente entrelazados en el canto, mantiene al público en vilo, de modo que al final se pierde toda noción del tiempo."
+        },
+        {
+            "title": "Tango - Connection",
+            "publication": "Berliner Tagesspiegel",
+            "year": 2004,
+            "text_1": "Canciones llenas de sensualidad y poesía - Noche de tango con Ana Fonell y el Dúo Stravaganza - La cantante Ana Fonell y el Trío Ángel con Christian Gerber en bandoneón, Frank Schulte en piano y Fabian Kalbitzer en contrabajo son los invitados musicales de esta noche de tango, donde el vestíbulo del Nicolaisaal se transforma en salón de baile. El programa de Ana Fonell incluye una mezcla de piezas conocidas y menos conocidas, desde tonos delicados hasta poderosos: canciones de pérdida y muerte, procesadas sensual y poéticamente y así convertidas en algo positivo - un equilibrio que Ana Fonell domina con su voz cálida y profunda y su impresionante poder creativo…"
+        },
+        {
+            "title": "Canciones Citadinas",
+            "publication": "Argentinisches Tageblatt, Buenos Aires",
+            "year": 2002,
+            "text_1": "... Esta mujer, con su brillante cabello rojo en el escenario oscurecido, interpretando las canciones de Astor Piazzolla y Kurt Weill, el compositor de La ópera de los tres centavos, con tanta naturalidad en voz y gesto, tiene expresión. Fascinante cómo...capta con precisión el ambiente en parte contemplativo, en parte arrebatador de los textos, y esto sin parecer exagerada, sin sentimentalismo de chanson. A veces canta 'Che Tango Che' de Piazzolla en el más puro francés, a veces la balada alemana de Brecht 'Surabaya Johnny' en un tono agudo y lamentoso. Del inglés sin acento del éxito de jazz de los años 40 'Speak low' del período americano de Weill, pasa a 'Se dice de mi', la milonga satírica de Tita Merello...Cómo la voz llena y clara de Fonell llenó toda la sala literalmente dejaba sin aliento..."
+        },
+        {
+            "title": "Tango Argentin",
+            "publication": "Wiesbadener Kurier",
+            "year": 2002,
+            "text_1": "Genuinamente apasionada - ... La cantante y actriz Ana Fonell puede contarse entre los pocos intérpretes de tango con alma. Gracias al comportamiento sereno de la cantante pelirroja, el tango como contraparte latinoamericana del blues nunca pareció exagerado ni patético...Las interpretaciones de tango imaginativas e inusualmente libres de Maguna y Trosman también contribuyeron a la nota alegre y 'libre de cursilería' de la velada. Con interludios jazzísticos proporcionaron un cruce de ritmos y paisajes sonoros."
+        },
+        {
+            "title": "Maria de Buenos Aires",
+            "publication": "Sächsische Zeitung",
+            "year": 1999,
+            "text_1": "... María, cantada por Ana Fonell nacida en Berlín, tuvo la tarea más difícil. Con los gestos más escasos, la intérprete estuvo extremadamente presente y consciente, dejando finalmente que su voz estallara en fuerza y pasión..."
+        },
+        {
+            "title": "Berlin meets Buenos Aires",
+            "publication": "Volksstimme, Magdeburg",
+            "year": 1999,
+            "text_1": "Ana Fonell encarna la síntesis perfecta entre la musicalidad europea y la pasión sudamericana. Su concierto fue un diálogo cultural que disolvió las fronteras entre continentes.",
+            "text_2": "Con su carismática presencia escénica y su extraordinaria expresividad vocal, logra transportar al público al mundo del tango. Una velada inolvidable llena de emoción y arte."
+        }
+    ]
+}

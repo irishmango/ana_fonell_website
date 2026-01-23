@@ -1,0 +1,48 @@
+{
+    "reviews": [
+        {
+            "title": "Tango Canción",
+            "publication": "Heidenheimer Zeitung",
+            "year": 2004,
+            "text_1": "... Her hair is as red as the underground fire of her music. Textured, sometimes smoky and veiled, then again dry and clear, but never pathetic is the voice of the Berlin-born singer: Ana Fonell sings tango, in Spanish of course, and she seems to feel the story in each of the songs.",
+            "text_2": "Again and again she interjects spoken passages in German, building bridges to the audience and keeping them spellbound. Her artistic signature is distinctive. Ana Fonell uses her theatrical skills sparingly yet effectively. Without grand gestures, coquetry, or femme fatale affectations, she controls her voice, oscillating between austere elegance, sardonic wit, and indulgent passion."
+        },
+        {
+            "title": "Ana Fonell singt Lieder von Astor Piazzolla",
+            "publication": "Tango Danza",
+            "year": 2004,
+            "text_1": "...Ana Fonell commands with her warm, deep voice an unpretentious range of melodic storytelling power that is surely unparalleled in Germany. She need not shy away from comparison with Argentine singers, even though her interpretation style is quite different... Sometimes she interprets with ironic wit, tempo and humor (El Titere), then again she seduces, whispers, laughs, weeps the melodies (Chiquilín de Bachín). With small, captivating stories about the authors and history of the tangos, brief translated excerpts from the wonderful poems by Ferrer and Neruda that form the basis of the songs, and German text passages surprisingly woven into the singing, she keeps the audience spellbound, so that by the end all sense of time is lost."
+        },
+        {
+            "title": "Tango - Connection",
+            "publication": "Berliner Tagesspiegel",
+            "year": 2004,
+            "text_1": "Songs full of sensuality and poetry - Tango night with Ana Fonell and the Duo Stravaganza - The singer Ana Fonell and Trio Ángel with Christian Gerber on bandoneon, Frank Schulte on piano and Fabian Kalbitzer on double bass are tonight's musical guests at a tango night, where the foyer of the Nicolaisaal transforms into a dance hall. Ana Fonell's program includes a mix of well-known and lesser-known pieces, from delicate to powerful tones: songs of loss and death, processed sensually and poetically and thus turned into something positive - a balancing act that Ana Fonell masters with her warm, deep voice and impressive creative power…"
+        },
+        {
+            "title": "Canciones Citadinas",
+            "publication": "Argentinisches Tageblatt, Buenos Aires",
+            "year": 2002,
+            "text_1": "... This woman, with her bright red hair on the darkened stage, interpreting the songs of Astor Piazzolla and Kurt Weill, the composer of The Threepenny Opera, with such naturalness in voice and gesture, has expression. Fascinating how she...precisely captures the partly contemplative, partly stirring mood of the texts, and this without seeming overwrought, without chanson sentimentality. Sometimes she sings Piazzolla's 'Che Tango Che' in the purest French, sometimes the German Brecht ballad 'Surabaya Johnny' in a sharp, lamenting tone. From the accent-free English of the 40s jazz hit 'Speak low' from Weill's American period, she moves to 'Se dice de mi', Tita Merello's satirical milonga...How Fonell's full and clear voice filled the entire room literally took one's breath away..."
+        },
+        {
+            "title": "Tango Argentin",
+            "publication": "Wiesbadener Kurier",
+            "year": 2002,
+            "text_1": "Genuinely passionate - ... The singer and actress Ana Fonell can be counted among the few tango interpreters with soul. Thanks to the calm demeanor of the red-haired singer, the tango as the Latin American counterpart to the blues never seemed overwrought or pathetic...The imaginative and unusually freely arranged tango interpretations by Maguna and Trosman also contributed to the cheerful and 'cheese-free' note of the evening. With jazzy interludes they provided a crossover of rhythms and soundscapes."
+        },
+        {
+            "title": "Maria de Buenos Aires",
+            "publication": "Sächsische Zeitung",
+            "year": 1999,
+            "text_1": "... Maria, sung by Berlin-born Ana Fonell, had the most difficult task. With the sparest gestures, the performer was extremely present and conscious, finally letting her voice break out in power and passion..."
+        },
+        {
+            "title": "Berlin meets Buenos Aires",
+            "publication": "Volksstimme, Magdeburg",
+            "year": 1999,
+            "text_1": "Ana Fonell embodies the perfect synthesis between European musicality and South American passion. Her concert was a cultural dialogue that dissolved the boundaries between continents.",
+            "text_2": "With her charismatic stage presence and her extraordinary vocal expressiveness, she manages to transport the audience into the world of tango. An unforgettable evening full of emotion and artistry."
+        }
+    ]
+}

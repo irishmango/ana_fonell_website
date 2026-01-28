@@ -220,7 +220,7 @@ p {
     justify-content: center;
     background-image: linear-gradient(var(--hero-overlay), var(--hero-overlay)), url('assets/img/ana_color_hero.webp');
     background-size: cover;
-    background-position: center 10%;
+    background-position: right 10%;
     background-repeat: no-repeat;
 
     min-height: 100vh;
@@ -242,13 +242,10 @@ p {
     top: 50%;
     /* stick when reaching vertical center */
     left: 50%;
-    /* center horizontally */
     transform: translate(-50%, -50%);
     /* exact centering */
     width: max-content;
-    /* shrink-wrap content so centering is precise */
     margin-left: auto;
-    /* ensure proper centering behavior */
     margin-right: auto;
 }
 
@@ -262,20 +259,27 @@ p {
 @media (min-width: 701px) and (max-width: 999px) {
     .title {
         top: 56%;
+        right: 12%;
     }
 }
 
-/* Position title top-left on desktop */
+/* Position title top-right on desktop */
 @media (min-width: 1000px) {
     .title {
         top: 32%;
-        left: 4%;
+        left: auto;
+        right: 2%;
         transform: none;
-        text-align: left;
+        text-align: right;
     }
 
     .hero h1 {
-        text-align: left;
+        text-align: right;
+        font-size: clamp(2.8rem, 6vw + 0.5rem, 5.2rem);
+    }
+
+    .title p {
+        font-size: 1.35rem;
     }
 }
 

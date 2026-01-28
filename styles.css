@@ -1356,9 +1356,10 @@ body.debug *:hover {
     outline-color: rgba(255, 255, 0, 0.7);
 }
 
-/* Viewport debug display */
+/* Viewport debug display (uncomment to enable) */
 #viewport-debug {
-    position: fixed;
+    display: none;
+    /* position: fixed;
     bottom: 12px;
     right: 12px;
     background: rgba(0, 0, 0, 0.8);
@@ -1368,5 +1369,5 @@ body.debug *:hover {
     padding: 6px 10px;
     border-radius: 4px;
     z-index: 9999;
-    pointer-events: none;
+    pointer-events: none; */
 }

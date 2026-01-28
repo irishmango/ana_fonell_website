@@ -427,4 +427,14 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     }
+
+    // Viewport debug display
+    const vpDebug = document.getElementById('viewport-debug');
+    if (vpDebug) {
+        const updateVp = () => {
+            vpDebug.textContent = `${window.innerWidth} × ${window.innerHeight}`;
+        };
+        updateVp();
+        window.addEventListener('resize', updateVp);
+    }
 });

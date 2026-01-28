@@ -60,8 +60,12 @@
         padding: 10px;
     }
 
+    .bio-content {
+        gap: 20px;
+    }
+
     .bio-media {
-        flex: 0 1 clamp(220px, 40vw, 380px);
+        width: clamp(160px, 20vw, 240px);
     }
 }
 
@@ -122,11 +126,13 @@
     /* Bio */
     .bio-content {
         flex-direction: column;
+        align-items: center;
         width: 100%;
     }
 
     .bio-media {
         width: 100%;
+        max-width: 320px;
         flex-basis: auto;
     }
 

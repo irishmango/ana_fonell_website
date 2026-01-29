@@ -44,8 +44,16 @@
 
 /* ========== Portrait tablets and big phones ========== */
 @media (max-width: 820px) {
+    .hero h1 {
+        font-size: clamp(2.07rem, 4.5vw + 0.32rem, 3.89rem);
+    }
+
+    .title {
+        top: 30%;
+    }
+
     .title p {
-        font-size: 1.25rem;
+        font-size: 0.9rem;
     }
 
     .player__title {
@@ -270,7 +278,7 @@
     }
 
     .title p {
-        font-size: 1.1rem;
+        font-size: 0.79rem;
     }
 
     .btn {
